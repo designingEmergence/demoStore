@@ -4,7 +4,7 @@ import styles from "./Page.module.sass";
 import { clearAllBodyScrollLocks } from "body-scroll-lock";
 import Ribbon from "../Ribbon";
 import Header from "../Header";
-//import Footer from "../Footer";
+import Footer from "../Footer";
 
 const Page = ({ 
   seperatorHeader,
@@ -30,7 +30,7 @@ const Page = ({
         />
         <Header />
         <div className={styles.inner}>{children}</div>
-        {/* {!footerHide && <Footer />} */}
+        {!footerHide && <Footer />}
       </div>
     </>
     );
