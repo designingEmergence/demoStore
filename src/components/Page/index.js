@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import styles from "./Page.module.sass";
 import { clearAllBodyScrollLocks } from "body-scroll-lock";
 import Ribbon from "../Ribbon";
+import Header from "../Header";
 //import Footer from "../Footer";
 
 const Page = ({ 
@@ -27,6 +28,7 @@ const Page = ({
           wide={wide}
           notAuthorized={notAuthorized}
         />
+        <Header />
         <div className={styles.inner}>{children}</div>
         {/* {!footerHide && <Footer />} */}
       </div>
