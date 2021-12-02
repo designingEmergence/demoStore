@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './ThankYou.module.scss';
+import styles from './ThankYou.module.sass';
 
 const ThankYou = () => {
   return (

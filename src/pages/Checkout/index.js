@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Checkout.module.scss';
+import styles from './Checkout.module.sass';
 
 const Checkout = () => {
   return (
