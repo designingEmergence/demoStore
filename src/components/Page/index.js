@@ -27,6 +27,7 @@ const Page = ({
           seperatorHeader={seperatorHeader}
           wide={wide}
           notAuthorized={notAuthorized}
+          className={styles.ribbon}
         />
         <Header />
         <div className={styles.inner}>{children}</div>
