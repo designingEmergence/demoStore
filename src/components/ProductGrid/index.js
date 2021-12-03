@@ -9,13 +9,14 @@ const ProductGrid = () => {
   
   return (
     <>
-      <p>ProductGrid</p>
-      <h3 className={styles.title}>Mini Excavators</h3>
-      <div className={styles.grid}>
-        <ProductCard product={productCatalog[0]} />
-      </div>
-      <div className={cn("button", styles.button)} >
-            Show More
+      <div className={styles.productGridContainer}>
+        <p className={styles.title}>Mini Excavators</p>
+        <div className={styles.grid}>
+          <ProductCard product={productCatalog[0]} />
+        </div>
+        <div className={cn("button-stroke", styles.showMoreButton)} >
+              Show More
+        </div>
       </div>
     </>
   );
