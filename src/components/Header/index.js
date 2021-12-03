@@ -7,7 +7,7 @@ const Header = ({}) => {
   return (
     <>
       <div className={styles.header}>
-        <img className={styles.logo} src='/logo.png' alt="logo"/>
+        <img className={styles.logo} src='/images/logo.png' alt="logo"/>
         <ShoppingCartIcon className={styles.cart}/>
       </div>
     </>

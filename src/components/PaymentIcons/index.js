@@ -4,7 +4,9 @@ import styles from "./PaymentIcons.module.sass";
 const PaymentIcons = () => {
   return (
     <>
-      <p>PaymentIcons</p>
+      <div className={styles.paymentIcons}>
+        <img src="/images/paymentIcons.png" alt="Payment Options" />
+      </div>
     </>
   );
 };
