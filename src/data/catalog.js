@@ -4,7 +4,7 @@ const productCatalog = [
     "name": "Excavator 3000",
     "description": "The Excavator 3000 is a powerful, heavy-duty excavator that can move a ton of material at a time. It is also equipped with a powerful drill that can cut through even the toughest materials.",
     "price": 30000,
-    "image": "images/excavator3000.jpg",
+    "image": "images/products/1.png",
     "available": true,
     "exclusive": true,
     "rating": 4.3,

@@ -1,13 +1,12 @@
 import React, {useState} from "react";
 import styles from "./Footer.module.sass";
 import { Link } from "react-router-dom";
-
 const Footer = () => {
   return (
     <>
       <div className={styles.footerContainer}>
         <div className={styles.footer}>
-          <img className={styles.logo} src="images/logo.png" alt="logo"/>
+          <p className={styles.logoWhite}>Demostore</p>
           <div className={styles.footerLinks}>
             <div className={styles.column1}>
               <p className={styles.columnTitle}>DLL</p>
