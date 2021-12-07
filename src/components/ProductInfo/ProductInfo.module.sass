@@ -1,1 +1,45 @@
 @import ../../styles/helpers
+
+.productInfoContainer
+  display: flex
+  justify-content: space-between
+  margin: 64px 100px
+
+.column1
+  width: 60%
+  display: flex
+  flex-direction: column
+  align-items: flex-start
+
+.column2
+  width: 40%
+
+.productName
+  +dm-sans
+  font-size: 32px
+  font-weight: 700
+  line-height: 40px
+  margin-bottom:10px
+
+.productRating
+  display: flex
+  justify-content: left
+
+.starIcon
+  color: #ffd166
+  margin-right: 8px
+
+.productRatingText
+  +poppins
+  font-size: 14px
+  line-height: 24px
+  font-weight: 700
+  margin-right: 8px
+
+.productRatingReviews
+  +poppins
+  font-size: 14px
+  line-height: 24px
+  font-weight: 500
+  margin-right: 8px
+  color: $n4
