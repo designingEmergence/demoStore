@@ -25,17 +25,17 @@ const AddToCart = ({price}) => {
       <div className={styles.addToCartContainer}>
         <p className={styles.price}>{price}</p>
         <div className={styles.dllPayment}>
-          <img src="/images/icons/paypal.svg" alt="dll" />
+          <img src="/images/icons/paypal.svg" alt="dll" className={styles.dllIcon} />
           <div className={styles.dllPaymentTextColumn}>
             <p className={styles.dllPaymentText}>4 interest free payments of {calculatePrice(price)}</p>
-            <p className={styles.dllPaymentText, styles.learnMore}>Learn More</p>
+            <p className={[styles.dllPaymentText, styles.learnMore].join(' ')}>Learn More</p>
           </div>
-          <Dropdown  
+        </div>
+        <Dropdown  
             className={styles.dropdown} 
             value={financingOption} 
             setValue={selectFinancingOption}
             options={financingOptions}/>
-        </div>
         <button className={cn("button", styles.addToCartButton)}>Add to Cart <AddShoppingCartIcon /></button>
       </div>
     </>
