@@ -3,10 +3,10 @@ import styles from "./ProductCard.module.sass";
 import cn from "classnames";
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
+import { useNavigate } from "react-router";
 
 function ProductStock(props) {
   const isAvailable = props.isAvailable
-  console.log(props)
 
   if (isAvailable){
     return ([
@@ -22,6 +22,7 @@ function ProductStock(props) {
 }
 
 const ProductCard = ({product}) => {
+  let navigate = useNavigate();
   return (
     <>
       <div className={styles.productCard}>
@@ -34,9 +35,9 @@ const ProductCard = ({product}) => {
           <hr className={styles.dividerLine}/>
           <div className={styles.productCard__lower}>
             <h6 className={styles.productPrice}>{product.price}</h6>
-            <div className={cn("button", styles.button)} >
+            <button onClick={()=> navigate('/product')} className={cn("button", styles.button)} >
                 Buy Now
-            </div>
+            </button>
           </div>
         </div>
       </div>

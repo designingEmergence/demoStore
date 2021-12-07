@@ -4,6 +4,25 @@ import ProductCard from "../ProductCard";
 import productCatalog  from "../../data/catalog";
 import cn from "classnames";
 
+var itemsToShow = 6;
+
+function incrementItemsToShow() {
+  itemsToShow += 6;
+  console.log(itemsToShow);
+}
+
+function MultipleProducts(props) {
+  const products = props.products;
+  const visibleItems = props.visibleItems
+  return products.map((product, index) => {
+    return (
+      <ProductCard
+        product={product}
+        className={styles.productCard}
+      />
+    );
+  }).slice(0, visibleItems);
+}
 
 const ProductGrid = () => {
   
@@ -12,11 +31,11 @@ const ProductGrid = () => {
       <div className={styles.productGridContainer}>
         <p className={styles.title}>Mini Excavators</p>
         <div className={styles.grid}>
-          <ProductCard product={productCatalog[0]} />
+          <MultipleProducts products={productCatalog} visibleItems={itemsToShow} />
         </div>
-        <div className={cn("button-stroke", styles.showMoreButton)} >
+        <button onClick={incrementItemsToShow} className={cn("button-stroke", styles.showMoreButton)} >
               Show More
-        </div>
+        </button>
       </div>
     </>
   );
