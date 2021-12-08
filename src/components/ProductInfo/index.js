@@ -21,7 +21,7 @@ const ProductInfo = ({product}) => {
         <div className={styles.column2}>
           <AddToCart price={product.price} />
           <p className={styles.overview}>Overview</p>
-          <hr className={styles.hr} />
+          <hr className={styles.dividerLine} />
           <p className={styles.description}>{product.description}</p>
         </div>
       </div>
