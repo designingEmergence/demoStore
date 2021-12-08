@@ -10,7 +10,7 @@ const Shipping = () => {
   return (
     <>
       <div className={styles.sameAddress}>
-        <Checkbox />
+        <Checkbox value={useSameAddress}/>
         <p className={styles.sameAddressText}>Use the same address for shipping</p>
       </div>
       {!useSameAddress && <CheckoutForm />}

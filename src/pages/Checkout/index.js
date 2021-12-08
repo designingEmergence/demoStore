@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Checkout.module.sass';
 import CheckoutForm from '../../components/CheckoutForm'
 import Shipping from '../../components/Shipping'
-import PlaceOrder from '../../components/PlaceOrder'
+import PlaceOrder from '../../components/Payments'
 import BagOverview from '../../components/BagOverview';
 import cn from "classnames";
 
