@@ -1,1 +1,76 @@
 @import ../../styles/helpers
+
+.bagOverviewContainer
+  background-color: $n8
+  border: 1px solid $n6
+  box-sizing: border-box
+  box-shadow: 0px 64px 64px -48px rgba(15, 15, 15, 0.08)
+  border-radius: 24px
+  padding: 32px
+
+.bagOverviewTitle
+  +poppins
+  +caption-bold-1
+  text-align: left
+  padding: 8px
+  margin-bottom:32px
+
+.bagOverviewItemContainer
+  text-align: center
+  margin-bottom: 32px
+
+.bagOverviewItem
+  display: flex
+  align-items: center
+  justify-content: left
+  padding:0
+
+.itemImage  
+  width: 88px
+
+.itemDetails
+  text-align: left
+  width:100%
+
+.itemName
+  +body-bold-2
+  +poppins
+
+.itemPrice
+  text-align: right
+  +caption-bold-1
+
+.itemAmount
+  text-align: center
+  margin: 0 auto
+  border: 1px solid #E6E8EC
+  box-sizing: border-box
+  border-radius: 90px
+  padding: 8px
+
+.bagOverviewDivider
+  +line
+  margin-bottom: 32px
+
+.bagOverviewLineItem
+  display: flex
+  justify-content: space-between
+  align-items: center
+  padding: 8px 12px
+
+.bagOverviewLineItemText
+  +poppins
+  +caption-1
+  color: $n4
+
+.bagOverviewLineItemPrice
+  +poppins
+  +caption-bold-1
+
+.totalText
+  font-weight: 700
+  color: $n1
+
+.total
+  background-color: $n7
+  border-radius: 8px

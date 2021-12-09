@@ -20,6 +20,7 @@ const Checkout = () => {
           <CheckoutForm />
           <Shipping />
           <Payments />
+          <button className={cn("button", styles.placeOrderButton)}>Place Order</button>
         </div>
         <div className={styles.column2}>
           <BagOverview /> 
