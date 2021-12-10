@@ -1,0 +1,19 @@
+.image-gallery-thumbnail-image {
+  border-radius: 16px;
+}
+
+.image-gallery-thumbnail.active, .image-gallery-thumbnail:focus, .image-gallery-thumbnail:hover {
+  border-color: #ffffff00;
+}
+
+.image-gallery-thumbnail{
+  width: 148px;
+}
+
+.image-gallery {
+  width: 100%;
+}
+
+.image-gallery-slide-wrapper {
+  margin-bottom: 48px;
+}

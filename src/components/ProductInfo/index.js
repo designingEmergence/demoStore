@@ -16,7 +16,7 @@ const ProductInfo = ({product}) => {
             <p className={styles.productRatingText}>{product.rating}</p>
             <p className={styles.productRatingReviews}>({product.reviews} reviews)</p>
           </div>
-          <ProductGallery images={product.images} />
+          <ProductGallery className={styles.productGallery} productImages={product.images} />
         </div>
         <div className={styles.column2}>
           <AddToCart price={product.price} />
