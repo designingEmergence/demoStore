@@ -3,10 +3,7 @@ import styles from "./AddToCart.module.sass";
 import Dropdown from "../Dropdown";
 import cn from "classnames";
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-
-function calculatePrice(price) {
-  return price/4+ price*0.2;
-}
+import DLLPaymentInfoCard from "../DLLPaymentInfoCard";
 
 
 let financingOption = "Own It";
@@ -24,13 +21,7 @@ const AddToCart = ({price}) => {
     <>
       <div className={styles.addToCartContainer}>
         <p className={styles.price}>{price}</p>
-        <div className={styles.dllPayment}>
-          <img src="/images/icons/paypal.svg" alt="dll" className={styles.dllIcon} />
-          <div className={styles.dllPaymentTextColumn}>
-            <p className={styles.dllPaymentText}>4 interest free payments of {calculatePrice(price)}</p>
-            <p className={[styles.dllPaymentText, styles.learnMore].join(' ')}>Learn More</p>
-          </div>
-        </div>
+        <DLLPaymentInfoCard price={price}/>
         <Dropdown  
             className={styles.dropdown} 
             value={financingOption} 

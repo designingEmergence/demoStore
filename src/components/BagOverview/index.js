@@ -3,8 +3,9 @@ import styles from "./BagOverview.module.sass";
 import Catalog from '../../data/catalog.js'
 import Counter from '../Counter'
 import cn from "classnames";
+import DLLPaymentInfoCard from '../DLLPaymentInfoCard'
 
-let itemsInBag = [Catalog[0], Catalog[1], Catalog[2]];
+let itemsInBag = [Catalog[0], Catalog[1]];
 
 let subTotal = itemsInBag.reduce((acc, item) => {
     return acc + item.price;
@@ -34,7 +35,7 @@ function Items(props) {
   })
 }
 
-const BagOverview = (showPaymentOptions) => {
+const BagOverview = (showPaymentOptions=false) => {
   return (
     <>
       <div className={styles.bagOverviewContainer}>
@@ -55,6 +56,12 @@ const BagOverview = (showPaymentOptions) => {
           <p className={cn(styles.totalText,styles.bagOverviewLineItemText)}>Total</p>
           <p className={cn(styles.bagOverviewLineItemPrice)}>{subTotal + shippingPrice}</p>
         </div>
+
+        {showPaymentOptions && <div className={styles.bagOverviewPaymentOptions}>
+          <DLLPaymentInfoCard price={subTotal + shippingPrice}/>
+          <button className={cn("button", styles.fullWidthButton, styles.checkoutButton)}>Checkout</button>
+          <button className={cn("button", styles.fullWidthButton, styles.dllButton)}>DLL Financing Option</button>
+          </div>}
       </div>
     </>
   );
