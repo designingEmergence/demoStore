@@ -29,7 +29,7 @@ const Page = ({
           notAuthorized={notAuthorized}
           className={styles.ribbon}
         />
-        <Header />
+        <Header className={styles.header}/>
         <div className={styles.inner}>{children}</div>
         {!footerHide && <Footer />}
       </div>
