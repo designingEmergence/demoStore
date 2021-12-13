@@ -4,6 +4,9 @@ import Catalog from '../../data/catalog.js'
 import Counter from '../Counter'
 import cn from "classnames";
 import DLLPaymentInfoCard from '../DLLPaymentInfoCard'
+import { useNavigate } from "react-router";
+import NumberFormat from 'react-number-format';
+
 
 let itemsInBag = [Catalog[0], Catalog[1]];
 
@@ -26,7 +29,7 @@ function Items(props) {
           <img src={item.image} className={styles.itemImage} alt={item.name}/>
           <div className={styles.itemDetails}>
             <p className={styles.itemName} >{item.name}</p>
-            <p className={styles.itemPrice} >{item.price}</p>
+            <NumberFormat value={item.price}  displayType={'text'} thousandSeparator={true} prefix={'$'} renderText={value => <p className={styles.itemPrice}>{value}</p>} />
           </div>
         </div>
         <Counter value={1} className={styles.itemAmount} iconMinus="minus" setValue={setItemAmount} iconPlus="plus" />
@@ -35,7 +38,8 @@ function Items(props) {
   })
 }
 
-const BagOverview = (showPaymentOptions=false) => {
+const BagOverview = ({showPaymentOptions=false}) => {
+  let navigate = useNavigate();
   return (
     <>
       <div className={styles.bagOverviewContainer}>
@@ -46,21 +50,21 @@ const BagOverview = (showPaymentOptions=false) => {
         <hr className={styles.bagOverviewDivider}/>
         <div className={styles.bagOverviewLineItem}>
           <p className={styles.bagOverviewLineItemText}>Subtotal</p>
-          <p className={styles.bagOverviewLineItemPrice}>{subTotal}</p>
+          <NumberFormat value={subTotal}  displayType={'text'} thousandSeparator={true} prefix={'$'} renderText={value => <p className={styles.bagOverviewLineItemPrice}>{value}</p>} />
         </div>  
         <div className={styles.bagOverviewLineItem}>
           <p className={styles.bagOverviewLineItemText}>Shipping</p>
-          <p className={styles.bagOverviewLineItemPrice}>{shippingPrice}</p>
+          <NumberFormat value={shippingPrice}  displayType={'text'} thousandSeparator={true} prefix={'$'} renderText={value => <p className={styles.bagOverviewLineItemPrice}>{value}</p>} />
         </div>
         <div className={cn(styles.total,styles.bagOverviewLineItem)}>
           <p className={cn(styles.totalText,styles.bagOverviewLineItemText)}>Total</p>
-          <p className={cn(styles.bagOverviewLineItemPrice)}>{subTotal + shippingPrice}</p>
+          <NumberFormat value={subTotal + shippingPrice}  displayType={'text'} thousandSeparator={true} prefix={'$'} renderText={value => <p className={styles.bagOverviewLineItemPrice}>{value}</p>} />
         </div>
 
         {showPaymentOptions && <div className={styles.bagOverviewPaymentOptions}>
           <DLLPaymentInfoCard price={subTotal + shippingPrice}/>
-          <button className={cn("button", styles.fullWidthButton, styles.checkoutButton)}>Checkout</button>
-          <button className={cn("button", styles.fullWidthButton, styles.dllButton)}>DLL Financing Option</button>
+          <button onClick={()=> navigate('/checkout')} className={cn("button", styles.fullWidthButton, styles.checkoutButton)}>Checkout</button>
+          <button onClick={()=> navigate('/checkout')} className={cn("button", styles.fullWidthButton, styles.dllButton)}>DLL Financing Option</button>
           </div>}
       </div>
     </>

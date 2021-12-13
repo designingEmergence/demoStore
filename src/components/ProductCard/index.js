@@ -4,6 +4,8 @@ import cn from "classnames";
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
 import { useNavigate } from "react-router";
+import NumberFormat from 'react-number-format';
+
 
 function ProductStock(props) {
   const isAvailable = props.isAvailable
@@ -34,7 +36,7 @@ const ProductCard = ({product}) => {
           </div>
           <hr className={styles.dividerLine}/>
           <div className={styles.productCard__lower}>
-            <h6 className={styles.productPrice}>{product.price}</h6>
+            <NumberFormat value={product.price} displayType={'text'} thousandSeparator={true} prefix={'$'} renderText={value => <p className={styles.productPrice}>{value}</p>}/>
             <button onClick={()=> navigate('/product')} className={cn("button", styles.button)} >
                 Buy Now
             </button>

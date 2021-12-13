@@ -13,7 +13,7 @@ const Header = ({}) => {
       <div className={styles.header}>
         <Link to="/"><p className={styles.logoBlack}>Demostore</p></Link>
         <button onClick={() => setShowBag(!showBag)} > <ShoppingCartIcon className={styles.cart}/></button>
-        {showBag && <div className={styles.bagOverview}><BagOverview /></div>}
+        {showBag && <div className={styles.bagOverview}><BagOverview showPaymentOptions={true}/></div>}
       </div>
     </>
   );
