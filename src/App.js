@@ -4,7 +4,6 @@ import './App.css';
 import "./styles/app.sass"
 
 import Page from './components/Page';
-
 import Catalog from './pages/Catalog';
 import Checkout  from './pages/Checkout';
 import Product from './pages/Product';

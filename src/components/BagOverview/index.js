@@ -6,7 +6,7 @@ import cn from "classnames";
 import DLLPaymentInfoCard from '../DLLPaymentInfoCard'
 import { useNavigate } from "react-router";
 import NumberFormat from 'react-number-format';
-
+import { useCart } from "react-use-cart";
 
 let itemsInBag = [Catalog[0], Catalog[1]];
 
@@ -16,26 +16,36 @@ let subTotal = itemsInBag.reduce((acc, item) => {
 
 let shippingPrice = 0;
 
-function setItemAmount(amount) {
-  console.log(amount);
-}
 
-function Items(props) {
-  let itemList = props.items
-  return itemList.map((item, index) => {
-    return (
-      <div className={styles.bagOverviewItemContainer}>
-        <div className={styles.bagOverviewItem} key={index}>
-          <img src={item.image} className={styles.itemImage} alt={item.name}/>
-          <div className={styles.itemDetails}>
-            <p className={styles.itemName} >{item.name}</p>
-            <NumberFormat value={item.price}  displayType={'text'} thousandSeparator={true} prefix={'$'} renderText={value => <p className={styles.itemPrice}>{value}</p>} />
+function Cart() {
+  const {
+    isEmpty,
+    totalUniqueItems,
+    items,
+    updateItemQuantity,
+    removeItem,
+  } = useCart();
+
+  if(isEmpty) return <div>Your cart is empty</div>;
+
+  return (
+    <>
+    {items.map((item) => {
+      return (
+        <div className={styles.bagOverviewItemContainer}>
+          <div className={styles.bagOverviewItem} key={item.id}>
+            <img src={item.image} className={styles.itemImage} alt={item.name}/>
+            <div className={styles.itemDetails}>
+              <p className={styles.itemName} >{item.name}</p>
+              <NumberFormat value={item.price}  displayType={'text'} thousandSeparator={true} prefix={'$'} renderText={value => <p className={styles.itemPrice}>{value}</p>} />
+            </div>
           </div>
+          <Counter value={1} className={styles.itemAmount} id={item.id} iconMinus="minus" setValue={updateItemQuantity} iconPlus="plus" />
         </div>
-        <Counter value={1} className={styles.itemAmount} iconMinus="minus" setValue={setItemAmount} iconPlus="plus" />
-      </div>
-    )
-  })
+      )
+    })}
+    </>
+  );
 }
 
 const BagOverview = ({showPaymentOptions=false}) => {
@@ -45,7 +55,7 @@ const BagOverview = ({showPaymentOptions=false}) => {
       <div className={styles.bagOverviewContainer}>
         <p className={styles.bagOverviewTitle}>Shopping Bag</p>
         <div className={styles.bagOverviewItems}>
-          <Items items={itemsInBag}/>
+          <Cart />
         </div>
         <hr className={styles.bagOverviewDivider}/>
         <div className={styles.bagOverviewLineItem}>

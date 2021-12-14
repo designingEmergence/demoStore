@@ -20,7 +20,7 @@ const ProductInfo = ({product}) => {
           <ProductGallery className={styles.productGallery} productImages={product.images} />
         </div>
         <div className={styles.column2}>
-          <AddToCart price={product.price} />
+          <AddToCart item={product} price={product.price} />
           <p className={styles.overview}>Overview</p>
           <hr className={styles.dividerLine} />
           <p className={styles.description}>{product.description}</p>

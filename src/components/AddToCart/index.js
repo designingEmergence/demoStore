@@ -5,6 +5,7 @@ import cn from "classnames";
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import DLLPaymentInfoCard from "../DLLPaymentInfoCard";
 import NumberFormat from 'react-number-format';
+import {useCart} from 'react-use-cart'
 
 
 let financingOption = "Own It";
@@ -15,9 +16,8 @@ function selectFinancingOption(value) {
   financingOption = value;
 }
 
-
-
-const AddToCart = ({price}) => {
+const AddToCart = ({item},{price}) => {
+  const { addItem } = useCart();
   return (
     <>
       <div className={styles.addToCartContainer}>
@@ -28,7 +28,7 @@ const AddToCart = ({price}) => {
             value={financingOption} 
             setValue={selectFinancingOption}
             options={financingOptions}/>
-        <button className={cn("button", styles.addToCartButton)}>Add to Cart <AddShoppingCartIcon /></button>
+        <button onClick={() => addItem(item)} className={cn("button", styles.addToCartButton)}>Add to Cart <AddShoppingCartIcon /></button>
       </div>
     </>
   );

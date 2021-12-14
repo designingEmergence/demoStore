@@ -3,17 +3,20 @@ import cn from "classnames";
 import styles from "./Counter.module.sass";
 import Icon from "../Icon";
 
-const Counter = ({ className, value, setValue, iconMinus, iconPlus }) => {
+const Counter = ({ className,id, value, setValue, iconMinus, iconPlus }) => {
+
+  let [count, setCount] = React.useState(value);
+
   return (
     <div className={cn(className, styles.counter)}>
       <button
-        className={cn(styles.button, { [styles.disabled]: value === 0 })}
-        onClick={() => setValue(value - 1)}
+        className={cn(styles.button, { [styles.disabled]: count === 0 })}
+        onClick={() => setCount(count-1)}
       >
         <Icon name={iconMinus} size="24" />
       </button>
-      <div className={styles.number}>{value}</div>
-      <button className={styles.button} onClick={() => setValue(value + 1)}>
+      <div className={styles.number}>{count}</div>
+      <button className={styles.button} onClick={() => setCount(count+1)}>
         <Icon name={iconPlus} size="24" />
       </button>
     </div>
