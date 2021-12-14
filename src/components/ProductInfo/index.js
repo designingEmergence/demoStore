@@ -4,6 +4,7 @@ import ProductGallery from "../ProductGallery";
 import AddToCart from "../AddToCart";
 import StarIcon from '@mui/icons-material/Star';
 
+
 const ProductInfo = ({product}) => {
   return (
     <>

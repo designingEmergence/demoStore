@@ -4,6 +4,7 @@ import Dropdown from "../Dropdown";
 import cn from "classnames";
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import DLLPaymentInfoCard from "../DLLPaymentInfoCard";
+import NumberFormat from 'react-number-format';
 
 
 let financingOption = "Own It";
@@ -20,7 +21,7 @@ const AddToCart = ({price}) => {
   return (
     <>
       <div className={styles.addToCartContainer}>
-        <p className={styles.price}>{price}</p>
+        <NumberFormat value={price} displayType={'text'} thousandSeparator={true} prefix={'$'} className={styles.price} />
         <DLLPaymentInfoCard price={price}/>
         <Dropdown  
             className={styles.dropdown} 

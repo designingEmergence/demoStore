@@ -4,12 +4,6 @@ import ProductCard from "../ProductCard";
 import productCatalog  from "../../data/catalog";
 import cn from "classnames";
 
-var itemsToShow = 6;
-
-function incrementItemsToShow() {
-  itemsToShow += 6;
-  console.log(itemsToShow);
-}
 
 function MultipleProducts(props) {
   const products = props.products;
@@ -25,17 +19,20 @@ function MultipleProducts(props) {
 }
 
 const ProductGrid = () => {
+
+  let [visibleItems, setVisibleItems] = useState(6);
+  let allProductsVisible = (visibleItems >= productCatalog.length);
   
   return (
     <>
       <div className={styles.productGridContainer}>
         <p className={styles.title}>Mini Excavators</p>
         <div className={styles.grid}>
-          <MultipleProducts products={productCatalog} visibleItems={itemsToShow} />
+          <MultipleProducts products={productCatalog} visibleItems={visibleItems} />
         </div>
-        <button onClick={incrementItemsToShow} className={cn("button-stroke", styles.showMoreButton)} >
+        {!allProductsVisible && <button onClick={()=> setVisibleItems(visibleItems += 6)} className={cn("button-stroke", styles.showMoreButton)} >
               Show More
-        </button>
+        </button>}
       </div>
     </>
   );
