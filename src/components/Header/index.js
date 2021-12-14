@@ -1,4 +1,5 @@
-import React, {useContext, useState, useRef} from "react";
+import React, {useContext, useState, useRef, useEffect} from "react";
+import { useLocation } from "react-router-dom";
 import styles from "./Header.module.sass";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import BagOverview from '../BagOverview';
@@ -8,6 +9,11 @@ const Header = ({}) => {
   const ref = useRef();
   let [showBag, setShowBag] = useState(false);
   useOnClickOutside(ref, () => setShowBag(false));
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    setShowBag(false);
+  }, [pathname])
 
   return (
     <>
