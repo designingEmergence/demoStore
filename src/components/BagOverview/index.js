@@ -35,7 +35,7 @@ function Cart() {
               <NumberFormat value={item.itemTotal}  displayType={'text'} thousandSeparator={true} prefix={'$'} renderText={value => <p className={styles.itemPrice}>{value}</p>} />
             </div>
           </div>
-          <Counter value={1} className={styles.itemAmount} id={item.id} iconMinus="minus" setValue={updateItemQuantity} iconPlus="plus" />
+          <Counter value={item.quantity} className={styles.itemAmount} id={item.id} iconMinus="minus" setValue={updateItemQuantity} iconPlus="plus" />
         </div>
       )
     })}
