@@ -8,14 +8,9 @@ import { useNavigate } from "react-router";
 import NumberFormat from 'react-number-format';
 import { useCart } from "react-use-cart";
 
-let itemsInBag = [Catalog[0], Catalog[1]];
 
-let subTotal = itemsInBag.reduce((acc, item) => {
-    return acc + item.price;
-}, 0);
-
+let subTotal = 0;
 let shippingPrice = 0;
-
 
 function Cart() {
   const {
@@ -37,7 +32,7 @@ function Cart() {
             <img src={item.image} className={styles.itemImage} alt={item.name}/>
             <div className={styles.itemDetails}>
               <p className={styles.itemName} >{item.name}</p>
-              <NumberFormat value={item.price}  displayType={'text'} thousandSeparator={true} prefix={'$'} renderText={value => <p className={styles.itemPrice}>{value}</p>} />
+              <NumberFormat value={item.itemTotal}  displayType={'text'} thousandSeparator={true} prefix={'$'} renderText={value => <p className={styles.itemPrice}>{value}</p>} />
             </div>
           </div>
           <Counter value={1} className={styles.itemAmount} id={item.id} iconMinus="minus" setValue={updateItemQuantity} iconPlus="plus" />
@@ -50,6 +45,7 @@ function Cart() {
 
 const BagOverview = ({showPaymentOptions=false}) => {
   let navigate = useNavigate();
+  const { cartTotal } = useCart();
   return (
     <>
       <div className={styles.bagOverviewContainer}>
@@ -60,7 +56,7 @@ const BagOverview = ({showPaymentOptions=false}) => {
         <hr className={styles.bagOverviewDivider}/>
         <div className={styles.bagOverviewLineItem}>
           <p className={styles.bagOverviewLineItemText}>Subtotal</p>
-          <NumberFormat value={subTotal}  displayType={'text'} thousandSeparator={true} prefix={'$'} renderText={value => <p className={styles.bagOverviewLineItemPrice}>{value}</p>} />
+          <NumberFormat value={cartTotal}  displayType={'text'} thousandSeparator={true} prefix={'$'} renderText={value => <p className={styles.bagOverviewLineItemPrice}>{value}</p>} />
         </div>  
         <div className={styles.bagOverviewLineItem}>
           <p className={styles.bagOverviewLineItemText}>Shipping</p>
@@ -68,7 +64,7 @@ const BagOverview = ({showPaymentOptions=false}) => {
         </div>
         <div className={cn(styles.total,styles.bagOverviewLineItem)}>
           <p className={cn(styles.totalText,styles.bagOverviewLineItemText)}>Total</p>
-          <NumberFormat value={subTotal + shippingPrice}  displayType={'text'} thousandSeparator={true} prefix={'$'} renderText={value => <p className={styles.bagOverviewLineItemPrice}>{value}</p>} />
+          <NumberFormat value={cartTotal + shippingPrice}  displayType={'text'} thousandSeparator={true} prefix={'$'} renderText={value => <p className={styles.bagOverviewLineItemPrice}>{value}</p>} />
         </div>
 
         {showPaymentOptions && <div className={styles.bagOverviewPaymentOptions}>
