@@ -6,6 +6,9 @@ import FormSlider from "../Slider";
 import cn from "classnames";
 import NumberFormat from "react-number-format";
 import { duration, PopperUnstyled } from "@mui/material";
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 
 
 
@@ -32,23 +35,58 @@ function OwnItUseItPage(props) {
 
       <div className={styles.useItContainer}>
         <FinancingTypeContainer
-          title="I want to use it"
-          buttonTitle="Use these products from"
-          price="$0"
-          buttonSubtitle="based on 48 months, incl. service contract" 
-          selectionFunction={props.selectionFunction}
-          variableValue={"Use"} />
-        <FinancingTypeContainer
           title="I want to own it"
           buttonTitle="Pay in installaments from"
           price="$0"
           buttonSubtitle="based on 48 months" 
           selectionFunction={props.selectionFunction}
           variableValue={"Own"}/>
+        <FinancingTypeContainer
+          title="I want to use it"
+          buttonTitle="Use these products from"
+          price="$0"
+          buttonSubtitle="based on 48 months, incl. service contract" 
+          selectionFunction={props.selectionFunction}
+          variableValue={"Use"} />
       </div>
 
     </div>
   );
+}
+
+function AddOptionsPage({setPage, nextPage}){
+
+  const [insurance, setInsurance] = useState(false);
+  const [maintenance, setMaintenance] = useState(false);
+  const [iot, setIot] = useState(false);
+  
+  return (
+    <div className={styles.page}>
+      <div className={styles.addOptionsHeader}>
+        <p className={styles.page_title}>Own it through financing</p>
+        <p className={styles.page_subtitle}>Please select the additional services you would like to include with your purchase</p>
+      </div>
+      <FormGroup className={styles.checkboxGroup}>
+        <FormControlLabel
+          control={
+            <Checkbox checked={insurance} onChange={()=>setInsurance(!insurance)} value="insurance" />
+          }
+          label="Add property casualty insurance"/>
+        <FormControlLabel
+          control={
+            <Checkbox checked={maintenance} onChange={()=>setMaintenance(!maintenance)} value="maintenance" />
+          }
+          label="Add maintenance" />
+        <FormControlLabel
+          control={
+            <Checkbox checked={iot} onChange={()=>setIot(!iot)} value="iot" />
+          }
+          label="Add IoT Subscription" />
+      </FormGroup>
+      <button onClick={()=>setPage(nextPage)} className={cn("button", styles.continueButton)}>Continue</button>
+
+    </div>
+  )
 }
 
 function PaymentTerms(props) {
@@ -65,24 +103,26 @@ function PaymentTerms(props) {
     <div className={styles.paymentTerms}>
       <div className={styles.paymentTermsConfig}>
         <form>
-          <Dropdown
-            className={styles.dropdown}
-            value={paymentTerm}
-            options={paymentTerms}
-            setValue={setPaymentTerm}
-            label="Payment Terms" />
-          <Dropdown
-            className={styles.dropdown}
-            value={duration}
-            options={durationOptions}
-            setValue={setDuration}
-            label="Duration (in months)" />
+          <div className={styles.paymentTermsRow}>
+            <div className={styles.paymentRowLeft}><Dropdown
+              className={styles.dropdown}
+              value={paymentTerm}
+              options={paymentTerms}
+              setValue={setPaymentTerm}
+              label="Payment Terms" /></div>
+            <div className={styles.paymentRowRight}><Dropdown
+              className={styles.dropdown}
+              value={duration}
+              options={durationOptions}
+              setValue={setDuration}
+              label="Duration (in months)" /></div>
+            </div>
           <FormSlider label="Down Payment" min={downPaymentMin} max={downPaymentMax} value={downPaymentMax/5} setValue={setDownPayment} />
         </form>
       </div>
       <div className={styles.paymentTermsResult}>
         <div className={cn(styles.paymentTermsResultLine, styles.lineHighlighted)}>
-          <p className={styles.paymentTermsResultLine_title}>Financing Amount</p>
+          <p className={cn(styles.paymentTermsResultLine_title, styles.blackText)}>Financing Amount</p>
           <NumberFormat value={0} displayType={'text'} thousandSeparator={true} prefix={'$'} renderText={value => <p className={styles.paymentTermsResultLine_amount}>{value}</p>}  />
         </div>
         <div className={styles.paymentTermsResultLine}>
@@ -114,14 +154,30 @@ function UseItPage(props) {
   );
 }
 
+function OwnItPage(props) {
+  return (
+    <div className={styles.page}>
+      <p className={styles.page_title}>Own it through financing</p>
+      <p className={styles.page_subtitle}>Configure the options to generate the quote for owning the products</p>
+      <PaymentTerms />
+    </div>
+  );
+}
+
 
 const DLLFinancingModal = ({active}) => {
   const [open, setOpen] = useState(active);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
   const [financingType, setFinancingType] = useState(null);
 
+  const [page, setPage] = useState(0);
+
+  function handleFinancingType(type){
+    setFinancingType(type);
+    if(type === 'Own') setPage(1);
+    else setPage(2);
+  }
 
 
   return (
@@ -134,8 +190,10 @@ const DLLFinancingModal = ({active}) => {
             <img src="/images/icons/dllSymbol.svg" alt="DLL Logo" />
           </div>
           <div className={styles.modal_body}>
-            {!financingType && <OwnItUseItPage selectionFunction={setFinancingType}/>}
-            {financingType === "Use" && <UseItPage />}
+            {page === 0 && <OwnItUseItPage selectionFunction={handleFinancingType}/>}
+            {page === 1 && <AddOptionsPage setPage={setPage} nextPage={3}/>}
+            {page === 2 && <UseItPage />}
+            {page === 3 && <OwnItPage />}
           </div>
         </div>
        </Modal>

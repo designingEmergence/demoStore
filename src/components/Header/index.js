@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 const Header = ({}) => {
   const ref = useRef();
   let [showBag, setShowBag] = useState(false);
-  let [showDLLFinancing, setShowDLLFinancing] = useState(false);
+  let [showDLLFinancing, setShowDLLFinancing] = useState(true);
 
 
   useOnClickOutside(ref, () => setShowBag(false));
