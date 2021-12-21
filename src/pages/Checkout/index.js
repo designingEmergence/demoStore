@@ -6,9 +6,14 @@ import Payments from '../../components/Payments'
 import BagOverview from '../../components/BagOverview';
 import FinancingOverview from '../../components/FinancingOverview';
 import cn from "classnames";
+import { useSearchParams } from 'react-router-dom';
 
 
 const Checkout = () => {
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  const isFinancing = searchParams.get('financing') === 'true';
+
   return (
     <>
       <div className={styles.checkoutContainer}>
@@ -20,9 +25,14 @@ const Checkout = () => {
           <hr className={styles.checkoutDividerLine}/>
           <CheckoutForm />
           <Shipping />
-          <FinancingOverview />
-          <Payments />
-          <button className={cn("button", styles.placeOrderButton)}>Place Order</button>
+          {isFinancing ? <div>
+            <FinancingOverview />
+            <button className={cn("button", styles.placeOrderButton)}>Get Financing</button>
+          </div>:
+          <div>
+            <Payments />
+            <button className={cn("button", styles.placeOrderButton)}>Place Order</button>
+          </div>}
         </div>
         <div className={styles.column2}>
           <BagOverview /> 

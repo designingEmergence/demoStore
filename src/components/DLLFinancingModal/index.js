@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 import styles from "./DLLFinancingModal.module.sass";
 import Modal from '@mui/material/Modal';
 import Dropdown from "../Dropdown";
@@ -102,7 +102,6 @@ function AddOptionsPage({setPage, nextPage}){
 
 function PaymentTerms(props) {
   const { cartTotal } = useCart();
-  const navigate=useNavigate();
   const totalPrice = cartTotal + 1500
   const interest = 0.03
 
@@ -206,7 +205,10 @@ function PaymentTerms(props) {
           <NumberFormat value={interestPerTerm} displayType={'text'} thousandSeparator={true} prefix={'$'} decimalScale={2}renderText={value => <p className={styles.paymentTermsResultLine_amount}>{value}</p>}/>
         </div>
       </div>
-      <button onClick={()=> navigate('/checkout')} className={cn("button", styles.continueButton)}>Continue</button>
+      <Link to={{
+        pathname: '/checkout',
+        search: `?financing=${true}`
+      }} ><button className={cn("button", styles.continueButton)}>Continue</button></Link>
     </div>
     );
   }
