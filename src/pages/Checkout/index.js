@@ -4,6 +4,7 @@ import CheckoutForm from '../../components/CheckoutForm'
 import Shipping from '../../components/Shipping'
 import Payments from '../../components/Payments'
 import BagOverview from '../../components/BagOverview';
+import FinancingOverview from '../../components/FinancingOverview';
 import cn from "classnames";
 
 
@@ -19,6 +20,7 @@ const Checkout = () => {
           <hr className={styles.checkoutDividerLine}/>
           <CheckoutForm />
           <Shipping />
+          <FinancingOverview />
           <Payments />
           <button className={cn("button", styles.placeOrderButton)}>Place Order</button>
         </div>
