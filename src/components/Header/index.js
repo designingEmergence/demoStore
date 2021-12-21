@@ -9,6 +9,9 @@ import { Link } from "react-router-dom";
 const Header = ({}) => {
   const ref = useRef();
   let [showBag, setShowBag] = useState(false);
+  let [showDLLFinancing, setShowDLLFinancing] = useState(false);
+
+
   useOnClickOutside(ref, () => setShowBag(false));
   const { pathname } = useLocation();
 
@@ -22,7 +25,7 @@ const Header = ({}) => {
         <Link to="/"><p className={styles.logoBlack}>Demostore</p></Link>
         <button onClick={() => setShowBag(!showBag)} > <ShoppingCartIcon className={styles.cart}/></button>
         {showBag && <div className={styles.bagOverview} ref={ref} ><BagOverview showPaymentOptions={true}/></div>}
-        <DLLFinancingModal />
+        <DLLFinancingModal active={showDLLFinancing}/>
       </div>
     </>
   );

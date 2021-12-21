@@ -3,6 +3,8 @@ import styles from "./DLLFinancingModal.module.sass";
 import Modal from '@mui/material/Modal';
 import Dropdown from "../Dropdown";
 import FormSlider from "../Slider";
+import cn from "classnames";
+import NumberFormat from "react-number-format";
 import { duration, PopperUnstyled } from "@mui/material";
 
 
@@ -61,21 +63,42 @@ function PaymentTerms(props) {
 
   return (
     <div className={styles.paymentTerms}>
-      <form>
-        <Dropdown
-          className={styles.dropdown}
-          value={paymentTerm}
-          options={paymentTerms}
-          setValue={setPaymentTerm}
-          label="Payment Terms" />
-        <Dropdown
-          className={styles.dropdown}
-          value={duration}
-          options={durationOptions}
-          setValue={setDuration}
-          label="Duration (in months)" />
-        <FormSlider label="Down Payment" min={downPaymentMin} max={downPaymentMax} value={downPaymentMax/5} setValue={setDownPayment} />
-      </form>
+      <div className={styles.paymentTermsConfig}>
+        <form>
+          <Dropdown
+            className={styles.dropdown}
+            value={paymentTerm}
+            options={paymentTerms}
+            setValue={setPaymentTerm}
+            label="Payment Terms" />
+          <Dropdown
+            className={styles.dropdown}
+            value={duration}
+            options={durationOptions}
+            setValue={setDuration}
+            label="Duration (in months)" />
+          <FormSlider label="Down Payment" min={downPaymentMin} max={downPaymentMax} value={downPaymentMax/5} setValue={setDownPayment} />
+        </form>
+      </div>
+      <div className={styles.paymentTermsResult}>
+        <div className={cn(styles.paymentTermsResultLine, styles.lineHighlighted)}>
+          <p className={styles.paymentTermsResultLine_title}>Financing Amount</p>
+          <NumberFormat value={0} displayType={'text'} thousandSeparator={true} prefix={'$'} renderText={value => <p className={styles.paymentTermsResultLine_amount}>{value}</p>}  />
+        </div>
+        <div className={styles.paymentTermsResultLine}>
+          <p className={styles.paymentTermsResultLine_title}>Monthly Price</p>
+          <NumberFormat value={0} displayType={'text'} thousandSeparator={true} prefix={'$'} renderText={value => <p className={styles.paymentTermsResultLine_amount}>{value}</p>} />
+        </div>
+        <div className={styles.paymentTermsResultLine}>
+          <p className={styles.paymentTermsResultLine_title}>Payback</p>
+          <NumberFormat value={0} displayType={'text'} thousandSeparator={true} prefix={'$'} renderText={value => <p className={styles.paymentTermsResultLine_amount}>{value}</p>}/>
+        </div>
+        <div className={styles.paymentTermsResultLine}>
+          <p className={styles.paymentTermsResultLine_title}>Interest (3%)</p>
+          <NumberFormat value={0} displayType={'text'} thousandSeparator={true} prefix={'$'} renderText={value => <p className={styles.paymentTermsResultLine_amount}>{value}</p>}/>
+        </div>
+      </div>
+      <button className={cn("button", styles.continueButton)}>Continue</button>
     </div>
     );
   }
@@ -92,8 +115,8 @@ function UseItPage(props) {
 }
 
 
-const DLLFinancingModal = () => {
-  const [open, setOpen] = useState(true);
+const DLLFinancingModal = ({active}) => {
+  const [open, setOpen] = useState(active);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 

@@ -35,12 +35,15 @@ const ProductCard = ({product}) => {
           </div>
           <hr className={styles.dividerLine}/>
           <div className={styles.productCard__lower}>
-            <NumberFormat value={product.price} displayType={'text'} thousandSeparator={true} prefix={'$'} renderText={value => <p className={styles.productPrice}>{value}</p>}/>
+            <div className={styles.productPriceContainer}>
+              <NumberFormat value={product.price} displayType={'text'} thousandSeparator={true} prefix={'$'} renderText={value => <p className={styles.productPrice}>{value}</p>}/>
+              <NumberFormat value={product.price/60} displayType={'text'} thousandSeparator={true} prefix={'$'} decimalScale={0} suffix={' per month'} renderText={value => <p className={cn(styles.productPrice, styles.blueText)}>{value}</p>}/>
+            </div>
             <Link to={{
               pathname: `/product`,
               search: `?id=${product.id}`
              }} >
-              <button className={cn("button", styles.button)} >
+              <button className={cn("button", styles.buyNowButton)} >
                 Buy Now
             </button></Link>
           </div>
