@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import styles from "./Page.module.sass";
 import { clearAllBodyScrollLocks } from "body-scroll-lock";
 import Ribbon from "../Ribbon";
 import Header from "../Header";
 import Footer from "../Footer";
+
 
 const Page = ({ 
   seperatorHeader,
@@ -14,6 +15,8 @@ const Page = ({
   notAuthorized
 }) => {
   const { pathname } = useLocation();
+
+
 
   useEffect(() => {
     window.scrollTo(0, 0);

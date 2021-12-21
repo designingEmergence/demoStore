@@ -1,15 +1,14 @@
 import React, {useState} from "react";
 import styles from "./BagOverview.module.sass";
-import Catalog from '../../data/catalog.js'
 import Counter from '../Counter'
 import cn from "classnames";
 import DLLPaymentInfoCard from '../DLLPaymentInfoCard'
 import { useNavigate } from "react-router";
 import NumberFormat from 'react-number-format';
 import { useCart } from "react-use-cart";
+import DLLFinancingModal from "../DLLFinancingModal";
 
 
-let subTotal = 0;
 let shippingPrice = 1500;
 
 function Cart() {
@@ -46,11 +45,12 @@ function Cart() {
 const BagOverview = ({showPaymentOptions=false}) => {
   let navigate = useNavigate();
   const { cartTotal } = useCart();
-
+  let [showDLLFinancing, setShowDLLFinancing] = useState(false);
 
   return (
     <>
       <div className={styles.bagOverviewContainer}>
+        
         <p className={styles.bagOverviewTitle}>Shopping Bag</p>
         <div className={styles.bagOverviewItems}>
           <Cart />
@@ -72,7 +72,8 @@ const BagOverview = ({showPaymentOptions=false}) => {
         {showPaymentOptions && <div className={styles.bagOverviewPaymentOptions}>
           <DLLPaymentInfoCard price={cartTotal + shippingPrice}/>
           <button onClick={()=> navigate('/checkout')} className={cn("button", styles.fullWidthButton, styles.checkoutButton)}>Checkout</button>
-          <button onClick={()=> navigate('/checkout')} className={cn("button", styles.fullWidthButton, styles.dllButton)}>DLL Financing Option</button>
+          <button onClick={()=> setShowDLLFinancing(true)} className={cn("button", styles.fullWidthButton, styles.dllButton)}>DLL Financing Option</button>
+          <DLLFinancingModal show={showDLLFinancing} setShow={setShowDLLFinancing}/>
           </div>}
       </div>
     </>
