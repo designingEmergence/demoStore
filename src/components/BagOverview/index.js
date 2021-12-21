@@ -10,7 +10,7 @@ import { useCart } from "react-use-cart";
 
 
 let subTotal = 0;
-let shippingPrice = 0;
+let shippingPrice = 1500;
 
 function Cart() {
   const {
