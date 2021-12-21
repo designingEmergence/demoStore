@@ -3,7 +3,7 @@ import styles from "./ProductCard.module.sass";
 import cn from "classnames";
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
-import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 import NumberFormat from 'react-number-format';
 
 
@@ -24,7 +24,6 @@ function ProductStock(props) {
 }
 
 const ProductCard = ({product}) => {
-  let navigate = useNavigate();
   return (
     <>
       <div className={styles.productCard}>
@@ -37,9 +36,13 @@ const ProductCard = ({product}) => {
           <hr className={styles.dividerLine}/>
           <div className={styles.productCard__lower}>
             <NumberFormat value={product.price} displayType={'text'} thousandSeparator={true} prefix={'$'} renderText={value => <p className={styles.productPrice}>{value}</p>}/>
-            <button onClick={()=> navigate('/product')} className={cn("button", styles.button)} >
+            <Link to={{
+              pathname: `/product`,
+              search: `?id=${product.id}`
+             }} >
+              <button className={cn("button", styles.button)} >
                 Buy Now
-            </button>
+            </button></Link>
           </div>
         </div>
       </div>

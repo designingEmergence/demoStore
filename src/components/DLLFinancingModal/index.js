@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import styles from "./DLLFinancingModal.module.sass";
 import Modal from '@mui/material/Modal';
 import Dropdown from "../Dropdown";
+import FormSlider from "../Slider";
 import { duration, PopperUnstyled } from "@mui/material";
 
 
@@ -54,6 +55,9 @@ function PaymentTerms(props) {
   const [paymentTerm, setPaymentTerm] = useState(paymentTerms[1]);
   const durationOptions = [12, 24, 36, 48];
   const [duration, setDuration] = useState(durationOptions[1]);
+  const downPaymentMin = 0;
+  const downPaymentMax = 100;
+  const [downPayment, setDownPayment] = useState(downPaymentMin);
 
   return (
     <div className={styles.paymentTerms}>
@@ -69,7 +73,8 @@ function PaymentTerms(props) {
           value={duration}
           options={durationOptions}
           setValue={setDuration}
-          label="Duration" />
+          label="Duration (in months)" />
+        <FormSlider label="Down Payment" min={downPaymentMin} max={downPaymentMax} value={downPaymentMax/5} setValue={setDownPayment} />
       </form>
     </div>
     );

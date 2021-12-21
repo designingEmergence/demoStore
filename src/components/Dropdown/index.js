@@ -4,7 +4,7 @@ import OutsideClickHandler from "react-outside-click-handler";
 import styles from "./Dropdown.module.sass";
 import Icon from "../Icon";
 
-const Dropdown = ({ className, value, setValue, options, empty }) => {
+const Dropdown = ({ className, label, value, setValue, options, empty }) => {
   const [visible, setVisible] = useState(false);
 
   const handleClick = (value) => {
@@ -19,6 +19,7 @@ const Dropdown = ({ className, value, setValue, options, empty }) => {
           [styles.active]: visible,
         })}
       >
+        {label && <div className={styles.label}>{label}</div>}
         <div className={styles.head} onClick={() => setVisible(!visible)}>
           <div className={styles.selection}>{value}</div>
           <div className={styles.arrow}>

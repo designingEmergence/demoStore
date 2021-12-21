@@ -1,0 +1,60 @@
+@import ../../styles/helpers
+
+.modal
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+  width: 544px
+  max-height: 700px
+  overflow: scroll
+  background-color: $n8
+  box-shadow: 0px 64px 64px -48px rgba(15, 15, 15, 0.08)
+  border-radius: 16px
+  padding: 24px 48px 48px 48px
+
+.modal_header
+  display: flex
+  justify-content: center
+  align-items: center
+  margin-bottom: 32px
+
+.page_title
+  +dm-sans
+  +headline-4
+  margin-bottom: 12px
+
+.page_subtitle
+  +poppins
+  font-weight: 400
+  font-size: 16px
+  line-height: 24px
+  margin-bottom: 24px
+
+.financingTypeContainer_title
+  +poppins
+  +body-bold-2
+  margin-bottom: 12px
+
+.financingTypeContainer_button
+  width: 100%
+  padding: 24px
+  border: 2px solid #E6E8EC
+  border-radius: 8px
+  margin-bottom: 40px
+  text-align: left
+
+.financingTypeContainer_button_title
+  +poppins
+  +body-bold-2
+
+.financingTypeContainer_button_price
+  +poppins
+  +body-bold-1
+
+.financingTypeContainer_button_subtitle
+  +caption-1
+  +poppins
+
+.dropdown
+  margin-bottom: 12px

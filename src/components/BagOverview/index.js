@@ -46,6 +46,8 @@ function Cart() {
 const BagOverview = ({showPaymentOptions=false}) => {
   let navigate = useNavigate();
   const { cartTotal } = useCart();
+
+
   return (
     <>
       <div className={styles.bagOverviewContainer}>
@@ -68,7 +70,7 @@ const BagOverview = ({showPaymentOptions=false}) => {
         </div>
 
         {showPaymentOptions && <div className={styles.bagOverviewPaymentOptions}>
-          <DLLPaymentInfoCard price={subTotal + shippingPrice}/>
+          <DLLPaymentInfoCard price={cartTotal + shippingPrice}/>
           <button onClick={()=> navigate('/checkout')} className={cn("button", styles.fullWidthButton, styles.checkoutButton)}>Checkout</button>
           <button onClick={()=> navigate('/checkout')} className={cn("button", styles.fullWidthButton, styles.dllButton)}>DLL Financing Option</button>
           </div>}

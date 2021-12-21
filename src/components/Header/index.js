@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import styles from "./Header.module.sass";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import BagOverview from '../BagOverview';
+import DLLFinancingModal from "../DLLFinancingModal";
 import { Link } from "react-router-dom";
 
 const Header = ({}) => {
@@ -21,6 +22,7 @@ const Header = ({}) => {
         <Link to="/"><p className={styles.logoBlack}>Demostore</p></Link>
         <button onClick={() => setShowBag(!showBag)} > <ShoppingCartIcon className={styles.cart}/></button>
         {showBag && <div className={styles.bagOverview} ref={ref} ><BagOverview showPaymentOptions={true}/></div>}
+        <DLLFinancingModal />
       </div>
     </>
   );
