@@ -8,6 +8,7 @@ import Catalog from './pages/Catalog';
 import Checkout  from './pages/Checkout';
 import Product from './pages/Product';
 import ThankYou from './pages/ThankYou';
+import ExternalDLLCheck from './pages/ExternalDLLCheck';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/checkout" element={<Page><Checkout /></Page>} />
         <Route path="/product" element={<Page><Product /></Page>} />
         <Route path="/thankyou" element={<Page><ThankYou /></Page>} />
+        <Route path="/external-dll-check" element={<ExternalDLLCheck />} />
       </Routes>
     </Router>
   );
