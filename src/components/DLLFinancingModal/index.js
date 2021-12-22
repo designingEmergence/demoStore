@@ -61,10 +61,22 @@ function OwnItUseItPage(props) {
 
 function AddOptionsPage({setPage, nextPage}){
   const globalState = useContext(store);
-  
+  const { dispatch } = globalState;
+
   const [insurance, setInsurance] = useState(false);
   const [maintenance, setMaintenance] = useState(false);
   const [iot, setIot] = useState(false);
+
+  function dispatchOptions(){
+    let extras = []
+    if(insurance) extras.push({name: 'insurance', price: 80});
+    if(maintenance) extras.push({name: 'maintenance', price: 40});
+    if(iot) extras.push({name: 'iot', price: 25});
+    console.log('extras: ', extras)
+    dispatch({type: 'SET_EXTRAS', payload: extras});
+  }
+
+
   
   return (
     <div className={styles.page}>
@@ -98,7 +110,10 @@ function AddOptionsPage({setPage, nextPage}){
           <p className={styles.checkboxGroup_price}>$25/month</p>
         </div>
       </FormGroup>
-      <button onClick={()=>setPage(nextPage)} className={cn("button", styles.continueButton)}>Continue</button>
+      <button onClick={()=>{
+        dispatchOptions();
+        setPage(nextPage)
+      }} className={cn("button", styles.continueButton)}>Continue</button>
 
     </div>
   )

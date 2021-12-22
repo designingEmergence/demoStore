@@ -63,7 +63,7 @@ const productCatalog = [
     "id": "6",
     "name": "MacBook Pro - M1 Max",
     "description": "The Apple MacBook Pro is a premium all-in-one notebook computer with a stunningly crisp Retina display. It features an amazing thin and light design, and is powered by the latest Intel processors and the latest graphics. It also features a brilliant backlit keyboard and a full-size trackpad for a comfortable and responsive typing experience.",
-    "price": 43000,
+    "price": 2199,
     "image": "images/products/6/1.jpg",
     "images": ["images/products/6/1.jpg", "images/products/6/2.jpg", "images/products/6/3.jpg", "images/products/6/4.jpg"],
     "available": true,

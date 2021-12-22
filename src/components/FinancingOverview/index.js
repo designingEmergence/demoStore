@@ -73,9 +73,8 @@ const FinancingOverview = () => {
   const { state } = useContext(store);
   const financeListItems = mapStateToFinanceItems(state.financingConfig);
 
-  // useEffect(() => {
-  //   financeListItems = mapStateToFinanceItems(state.financingConfig);
-  // })
+  console.log('state', state);
+
   return (
     <>
       <div className={styles.financingOverviewContainer}>

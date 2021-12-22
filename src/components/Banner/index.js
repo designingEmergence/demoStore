@@ -10,6 +10,7 @@ const Banner = () => {
     <>
       {/* <p>Banner</p> */}
       <div className={styles.bannerBackground}>
+
         <div className={styles.bannerContent}>
           <p className={styles.bannerTitle}>{copy.banner.title}</p>
           <p className={styles.bannerSubtitle}>{copy.banner.subtitle}</p>
@@ -17,9 +18,8 @@ const Banner = () => {
           <Link className={cn("button", styles.button)} to="/">
               Explore & Buy
           </Link>
-          </div>
-      </div>
-      
+        </div>
+      </div>      
     </>
   );
 };
