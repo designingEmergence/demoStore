@@ -3,6 +3,7 @@ import styles from "./ProductGrid.module.sass";
 import ProductCard from "../ProductCard";
 import productCatalog  from "../../data/catalog";
 import cn from "classnames";
+import copy from "../../data/copy";
 
 
 function MultipleProducts(props) {
@@ -26,7 +27,7 @@ const ProductGrid = () => {
   return (
     <>
       <div className={styles.productGridContainer}>
-        <p className={styles.title}>Mini Excavators</p>
+        <p className={styles.title}>{copy.productGridName}</p>
         <div className={styles.grid}>
           <MultipleProducts products={productCatalog} visibleItems={visibleItems} />
         </div>

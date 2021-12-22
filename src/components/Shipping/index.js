@@ -4,6 +4,7 @@ import Checkbox from "../Checkbox"
 import CheckoutForm from "../CheckoutForm";
 import Radio from "../Radio";
 import RadioGroup from '@mui/material/RadioGroup';
+import copy from "../../data/copy";
 
 
 var useSameAddress = true
@@ -24,16 +25,16 @@ const Shipping = () => {
           <div className={styles.shippingMethod} >
             <Radio />
             <div className={styles.shippingMethodTextGroup}>
-              <p className={styles.shippingMethodText}>Deliver to your dealer (free)</p>
-              <p className={styles.shippingMethodSubText}>Estimated delivery time: 2-3 days</p>
+              <p className={styles.shippingMethodText}>{copy.shipping.option1.type}</p>
+              <p className={styles.shippingMethodSubText}>{copy.shipping.option1.delivery}</p>
             </div>
           </div>
           <hr className={styles.shippingMethodsDivider} />
           <div className={styles.shippingMethod} >
             <Radio />
             <div className={styles.shippingMethodTextGroup}>
-              <p className={styles.shippingMethodText}>Deliver at your door ($1500)</p>
-              <p className={styles.shippingMethodSubText}>Estimated delivery time: 5-7 days</p>
+              <p className={styles.shippingMethodText}>{copy.shipping.option2.type}</p>
+              <p className={styles.shippingMethodSubText}>{copy.shipping.option2.delivery}</p>
             </div>
           </div>
         </RadioGroup>

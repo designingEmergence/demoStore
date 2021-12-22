@@ -9,7 +9,7 @@ import { useCart } from "react-use-cart";
 import DLLFinancingModal from "../DLLFinancingModal";
 
 
-let shippingPrice = 1500;
+let shippingPrice = 50;
 
 function Cart() {
   const {
