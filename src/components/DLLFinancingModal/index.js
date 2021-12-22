@@ -60,7 +60,8 @@ function OwnItUseItPage(props) {
 }
 
 function AddOptionsPage({setPage, nextPage}){
-
+  const globalState = useContext(store);
+  
   const [insurance, setInsurance] = useState(false);
   const [maintenance, setMaintenance] = useState(false);
   const [iot, setIot] = useState(false);
@@ -105,7 +106,9 @@ function AddOptionsPage({setPage, nextPage}){
 
 function PaymentTerms(props) {
   const { cartTotal } = useCart();
-  const totalPrice = cartTotal + 1500
+  //const globalState = useContext(store);
+
+  const totalPrice = cartTotal + 50//globalState.shippingMethod.price;
   const interest = 0.03
 
   const paymentTerms = ["Monthly", "Quarterly", "Semi-annually", "Annually"];
