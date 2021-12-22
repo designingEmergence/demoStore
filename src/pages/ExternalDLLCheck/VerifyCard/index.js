@@ -1,7 +1,8 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import styles from "./VerifyCard.module.sass";
 import TextInput from "../../../components/TextInput";
 import cn from "classnames";
+import { useNavigate } from "react-router";
 
 
 function VerifyDetails({setPage, nextPage}) {
@@ -32,14 +33,17 @@ function SignDocument({setPage, nextPage}) {
 }
 
 function ConfirmPage() {
-  const [countdown, setCountdown] = useState(5);
+  let navigate = useNavigate();
 
-  function redirectToHome() {
-    setCountdown(5);
+  function redirectWithDelay(path, delay) {
     setTimeout(() => {
-      window.location.href = "/";
-    }, 1000);
+      navigate(path);
+    } , delay);
   }
+
+  useEffect(() => {
+    redirectWithDelay("/thankyou", 5000);
+  });
 
   return (
     <div className={styles.pageContent}>
