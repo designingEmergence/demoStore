@@ -9,7 +9,6 @@ const Counter = ({ className,id, value, setValue, iconMinus, iconPlus }) => {
 
   let updateCounterValue = (counterValue) => {
     setCount(counterValue);
-    console.log(counterValue);
     setValue(itemId, counterValue);
   };
 

@@ -13,8 +13,6 @@ const ProductGallery = (props) => {
     }
   })
 
-  console.log(images)
-
   return (
     <>
       <ImageGallery items={images}

@@ -10,7 +10,6 @@ const FormSlider = ({className, label, value, setValue, min, max, empty}) => {
   function handleChange(event, newValue) {
     setValue(newValue);
     setSliderValue(newValue);
-    console.log(newValue);
   }
 
   return (

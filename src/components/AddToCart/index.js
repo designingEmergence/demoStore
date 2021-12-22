@@ -12,7 +12,6 @@ let financingOption = "Own It";
 let financingOptions = ["Own It", "Use It"]
 
 function selectFinancingOption(value) {
-  console.log('selected', value);
   financingOption = value;
 }
 

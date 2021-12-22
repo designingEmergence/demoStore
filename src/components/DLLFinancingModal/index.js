@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect, useContext} from "react";
 import { Link } from "react-router-dom";
 import styles from "./DLLFinancingModal.module.sass";
 import Modal from '@mui/material/Modal';
@@ -11,10 +11,12 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { useCart } from "react-use-cart"
+import { store } from "../../store";
 
 
 
 function OwnItUseItPage(props) {
+  const { cartTotal } = useCart();
 
   function FinancingTypeContainer(props) {
     return (
@@ -22,7 +24,8 @@ function OwnItUseItPage(props) {
         <p className={styles.financingTypeContainer_title}>{props.title}</p>
         <button onClick={()=>props.selectionFunction(props.variableValue)} className={styles.financingTypeContainer_button}>
           <p className={styles.financingTypeContainer_button_title}>{props.buttonTitle}</p>
-          <span className={styles.financingTypeContainer_button_price}>{props.price}</span>
+          <NumberFormat value={props.price} displayType={'text'} decimalScale={0} thousandSeparator={true} prefix={'$'} 
+           renderText={value => <span className={styles.financingTypeContainer_button_price}>{value}</span>} />
           <span className={styles.financingTypeContainer_button_title}> per month</span>
           <p className={styles.financingTypeContainer_button_subtitle}>{props.buttonSubtitle}</p>
         </button>
@@ -39,14 +42,14 @@ function OwnItUseItPage(props) {
         <FinancingTypeContainer
           title="I want to own it"
           buttonTitle="Pay in installaments from"
-          price="$6500"
+          price={cartTotal/50}
           buttonSubtitle="based on 48 months" 
           selectionFunction={props.selectionFunction}
           variableValue={"Own"}/>
         <FinancingTypeContainer
           title="I want to use it"
           buttonTitle="Use these products from"
-          price="$7600"
+          price={cartTotal/60}
           buttonSubtitle="based on 48 months, incl. service contract" 
           selectionFunction={props.selectionFunction}
           variableValue={"Use"} />
@@ -108,7 +111,7 @@ function PaymentTerms(props) {
   const paymentTerms = ["Monthly", "Quarterly", "Semi-annually", "Annually"];
   const [paymentTerm, setPaymentTerm] = useState(paymentTerms[0]);
   const durationOptions = [12, 24, 36, 48];
-  const [duration, setDuration] = useState(durationOptions[1]);
+  const [duration, setDuration] = useState(durationOptions[3]);
   const downPaymentMin = 0;
   const downPaymentMax = totalPrice;
   const [downPayment, setDownPayment] = useState(downPaymentMax/5);
@@ -116,10 +119,9 @@ function PaymentTerms(props) {
   const [financeAmount, setFinanceAmount] = useState(0);
   const [paybackAmount, setPaybackAmount] = useState(0);
   const [pricePerTerm, setPricePerTerm] = useState(0);
-  const [interestPerTerm, setInterestPerTerm] = useState(0);
+  const [interestPerTerm, setInterestPerTerm] = useState(0);    
 
   function calculateFinancialTerms(totalPrice, downPayment, duration, paymentTerm, interest){
-    console.log('variables received: ', totalPrice, downPayment, duration, paymentTerm, interest)
     const financeAmount = totalPrice - downPayment;
     let numPaymentTerms = 0;
     
@@ -137,18 +139,21 @@ function PaymentTerms(props) {
         numPaymentTerms = duration/12;
         break;
     }
-
     let interestPerTerm = financeAmount * interest / numPaymentTerms;
     let paybackAmount = financeAmount / numPaymentTerms;
     let pricePerTerm = paybackAmount + interestPerTerm;
 
-    console.log('financial terms calculated', financeAmount, numPaymentTerms, interestPerTerm, pricePerTerm, paybackAmount);
 
     setFinanceAmount(financeAmount);
     setPaybackAmount(paybackAmount);
     setPricePerTerm(pricePerTerm);
     setInterestPerTerm(interestPerTerm);
   }
+
+  useEffect(()=>{
+    calculateFinancialTerms(totalPrice, downPayment, duration, paymentTerm, interest);
+  }, [totalPrice, downPayment, duration, paymentTerm, interest])
+
 
   const handleDownPaymentChange = (newValue) => {
     setDownPayment(newValue);
@@ -190,19 +195,19 @@ function PaymentTerms(props) {
       <div className={styles.paymentTermsResult}>
         <div className={cn(styles.paymentTermsResultLine, styles.lineHighlighted)}>
           <p className={cn(styles.paymentTermsResultLine_title, styles.blackText)}>Financing Amount</p>
-          <NumberFormat value={financeAmount} displayType={'text'} decimalScale={2} thousandSeparator={true} prefix={'$'} renderText={value => <p className={styles.paymentTermsResultLine_amount}>{value}</p>}  />
+          <NumberFormat value={financeAmount} displayType={'text'} decimalScale={0} thousandSeparator={true} prefix={'$'} renderText={value => <p className={styles.paymentTermsResultLine_amount}>{value}</p>}  />
         </div>
         <div className={styles.paymentTermsResultLine}>
           <p className={styles.paymentTermsResultLine_title}>Price per term</p>
-          <NumberFormat value={pricePerTerm} decimalScale={2} displayType={'text'} thousandSeparator={true} prefix={'$'} renderText={value => <p className={styles.paymentTermsResultLine_amount}>{value}</p>} />
+          <NumberFormat value={pricePerTerm} decimalScale={0} displayType={'text'} thousandSeparator={true} prefix={'$'} renderText={value => <p className={styles.paymentTermsResultLine_amount}>{value}</p>} />
         </div>
         <div className={styles.paymentTermsResultLine}>
           <p className={styles.paymentTermsResultLine_title}>Payback</p>
-          <NumberFormat value={paybackAmount} decimalScale={2} displayType={'text'} thousandSeparator={true} prefix={'$'} renderText={value => <p className={styles.paymentTermsResultLine_amount}>{value}</p>}/>
+          <NumberFormat value={paybackAmount} decimalScale={0} displayType={'text'} thousandSeparator={true} prefix={'$'} renderText={value => <p className={styles.paymentTermsResultLine_amount}>{value}</p>}/>
         </div>
         <div className={styles.paymentTermsResultLine}>
           <p className={styles.paymentTermsResultLine_title}>Interest (3%)</p>
-          <NumberFormat value={interestPerTerm} displayType={'text'} thousandSeparator={true} prefix={'$'} decimalScale={2}renderText={value => <p className={styles.paymentTermsResultLine_amount}>{value}</p>}/>
+          <NumberFormat value={interestPerTerm} displayType={'text'} thousandSeparator={true} prefix={'$'} decimalScale={0}renderText={value => <p className={styles.paymentTermsResultLine_amount}>{value}</p>}/>
         </div>
       </div>
       <Link to={{
@@ -236,6 +241,9 @@ function OwnItPage(props) {
 
 
 const DLLFinancingModal = ({show, setShow}) => {
+  const globalState = useContext(store);
+  console.log('globalState: ', globalState)
+
   const [open, setOpen] = useState(show);
   const handleOpen = () => setShow(true);
   const handleClose = () => setShow(false);
