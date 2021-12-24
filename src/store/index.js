@@ -1,6 +1,7 @@
 import React, {createContext, useReducer} from 'react';
 
 const initialState = {
+  financingType: '',
   financingConfig: {
     paymentTerms: 'Monthly',
     duration: 48,
@@ -27,6 +28,9 @@ const StateProvider = ({ children }) => {
       case 'SET_FINANCING_CONFIGURATION':
         const financingState = { ...state, financingConfig: action.payload };
         return financingState;
+      case 'SET_FINANCING_TYPE':
+        const financingTypeState = { ...state, financingType: action.payload };
+        return financingTypeState;
       case 'SET_EXTRAS':
         const extrasState = { ...state, extras: action.payload };
         return extrasState;

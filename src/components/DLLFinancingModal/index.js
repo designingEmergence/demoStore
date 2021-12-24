@@ -42,6 +42,7 @@ const DLLFinancingModal = ({show, setShow}) => {
 
   function handleFinancingType(type){
     setFinancingType(type);
+    console.log('financingType: ', financingType)
     if(type === 'Own') setPage(1);
     else setPage(2);
   }
