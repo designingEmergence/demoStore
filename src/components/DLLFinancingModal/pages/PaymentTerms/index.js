@@ -1,0 +1,129 @@
+import React, {useState, useEffect} from "react";
+import { Link } from "react-router-dom";
+import styles from "./PaymentTerms.module.sass";
+import Dropdown from "../../../Dropdown"; 
+import FormSlider from "../../../Slider";
+import cn from "classnames";
+import NumberFormat from "react-number-format";
+
+import { useCart } from "react-use-cart"
+// import { store } from "../../../store";
+
+const PaymentTerms =(props) => {
+  const { cartTotal } = useCart();
+  //const globalState = useContext(store);
+
+  const totalPrice = cartTotal + 50//globalState.shippingMethod.price;
+  const interest = 0.03
+
+  const paymentTerms = ["Monthly", "Quarterly", "Semi-annually", "Annually"];
+  const [paymentTerm, setPaymentTerm] = useState(paymentTerms[0]);
+  const durationOptions = [12, 24, 36, 48];
+  const [duration, setDuration] = useState(durationOptions[3]);
+  const downPaymentMin = 0;
+  const downPaymentMax = totalPrice;
+  const [downPayment, setDownPayment] = useState(downPaymentMax/5);
+
+  const [financeAmount, setFinanceAmount] = useState(0);
+  const [paybackAmount, setPaybackAmount] = useState(0);
+  const [pricePerTerm, setPricePerTerm] = useState(0);
+  const [interestPerTerm, setInterestPerTerm] = useState(0);    
+
+  function calculateFinancialTerms(totalPrice, downPayment, duration, paymentTerm, interest){
+    const financeAmount = totalPrice - downPayment;
+    let numPaymentTerms = 0;
+    
+    switch(paymentTerm){
+      case "Monthly":
+        numPaymentTerms = duration;
+        break;
+      case "Quarterly":
+       numPaymentTerms = duration/3;
+        break;
+      case "Semi-annually":
+        numPaymentTerms = duration/6;
+        break;
+      case "Annually":
+        numPaymentTerms = duration/12;
+        break;
+    }
+    let interestPerTerm = financeAmount * interest / numPaymentTerms;
+    let paybackAmount = financeAmount / numPaymentTerms;
+    let pricePerTerm = paybackAmount + interestPerTerm;
+
+
+    setFinanceAmount(financeAmount);
+    setPaybackAmount(paybackAmount);
+    setPricePerTerm(pricePerTerm);
+    setInterestPerTerm(interestPerTerm);
+  }
+
+  useEffect(()=>{
+    calculateFinancialTerms(totalPrice, downPayment, duration, paymentTerm, interest);
+  }, [totalPrice, downPayment, duration, paymentTerm, interest])
+
+
+  const handleDownPaymentChange = (newValue) => {
+    setDownPayment(newValue);
+    calculateFinancialTerms(totalPrice, downPayment, duration, paymentTerm, interest);
+  };
+
+  const handleDurationChange = (newValue) => {
+    setDuration(newValue);
+    calculateFinancialTerms(totalPrice, downPayment, duration, paymentTerm, interest);
+  };
+
+  const handlePaymentTermChange = (newValue) => {
+    setPaymentTerm(newValue);
+    calculateFinancialTerms(totalPrice, downPayment, duration, paymentTerm, interest);
+  };
+
+
+  return (
+    <div className={styles.paymentTerms}>
+      <div className={styles.paymentTermsConfig}>
+        <form>
+          <div className={styles.paymentTermsRow}>
+            <div className={styles.paymentRowLeft}><Dropdown
+              className={styles.dropdown}
+              value={paymentTerm}
+              options={paymentTerms}
+              setValue={handlePaymentTermChange}
+              label="Payment Terms" /></div>
+            <div className={styles.paymentRowRight}><Dropdown
+              className={styles.dropdown}
+              value={duration}
+              options={durationOptions}
+              setValue={handleDurationChange}
+              label="Duration (in months)" /></div>
+            </div>
+          <FormSlider label="Down Payment" min={downPaymentMin} max={downPaymentMax} value={downPayment} setValue={handleDownPaymentChange} />
+        </form>
+      </div>
+      <div className={styles.paymentTermsResult}>
+        <div className={cn(styles.paymentTermsResultLine, styles.lineHighlighted)}>
+          <p className={cn(styles.paymentTermsResultLine_title, styles.blackText)}>Financing Amount</p>
+          <NumberFormat value={financeAmount} displayType={'text'} decimalScale={0} thousandSeparator={true} prefix={'$'} renderText={value => <p className={styles.paymentTermsResultLine_amount}>{value}</p>}  />
+        </div>
+        <div className={styles.paymentTermsResultLine}>
+          <p className={styles.paymentTermsResultLine_title}>Price per term</p>
+          <NumberFormat value={pricePerTerm} decimalScale={0} displayType={'text'} thousandSeparator={true} prefix={'$'} renderText={value => <p className={styles.paymentTermsResultLine_amount}>{value}</p>} />
+        </div>
+        <div className={styles.paymentTermsResultLine}>
+          <p className={styles.paymentTermsResultLine_title}>Payback</p>
+          <NumberFormat value={paybackAmount} decimalScale={0} displayType={'text'} thousandSeparator={true} prefix={'$'} renderText={value => <p className={styles.paymentTermsResultLine_amount}>{value}</p>}/>
+        </div>
+        <div className={styles.paymentTermsResultLine}>
+          <p className={styles.paymentTermsResultLine_title}>Interest (3%)</p>
+          <NumberFormat value={interestPerTerm} displayType={'text'} thousandSeparator={true} prefix={'$'} decimalScale={0}renderText={value => <p className={styles.paymentTermsResultLine_amount}>{value}</p>}/>
+        </div>
+      </div>
+      <Link to={{
+        pathname: '/checkout',
+        search: `?financing=${true}`
+      }} ><button className={cn("button", styles.continueButton)}>Continue</button></Link>
+    </div>
+    );
+}
+
+export default PaymentTerms;
