@@ -1,4 +1,4 @@
-import React, {useState, useContext} from "react";
+import React, {useContext} from "react";
 import styles from "./OwnItUseIt.module.sass";
 import { useCart } from "react-use-cart"
 import { store } from "../../../../store";
@@ -16,7 +16,7 @@ const OwnItUseIt = ({selectionFunction}) => {
       payload: type,
     });
     selectNextPage(type);
-  }
+  } 
 
   function FinancingTypeContainer(props) {
     return (

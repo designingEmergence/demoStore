@@ -13,7 +13,7 @@ const mockExtrasStore = [
   },
 ]
 
-function mapStateToFinanceItems(config) {
+function mapStateToFinanceItems(config, interestRate) {
   let items = [
     {
       title: "Payment Terms",
@@ -46,7 +46,7 @@ function mapStateToFinanceItems(config) {
       type: "currency"
     },
     {
-      title: "Interest per term " + '(' + (config.interestRate *100) + '%)',
+      title: "Interest per term " + '(' + (interestRate *100) + '%)',
       value: config.interestPerTerm,
       type: "currency"
     },
@@ -60,7 +60,7 @@ function Financeitems({values}) {
       <div className={cn(styles.item, (item.highlight && styles.highlight))} key={index}>
         <div className={cn(styles.item_title,(item.highlight && styles.item_black))}>{item.title}</div>
         <div className={styles.item_value}>
-          {item.type === "currency" ? <NumberFormat value={item.value} displayType={'text'} thousandSeparator={true} prefix={'$'} /> :
+          {item.type === "currency" ? <NumberFormat value={item.value} decimalScale={0} displayType={'text'} thousandSeparator={true} prefix={'$'} /> :
           <p>{item.value + (item.suffix ? ' ' + item.suffix: '')}</p>}
         </div>
       </div>
@@ -71,7 +71,7 @@ function Financeitems({values}) {
 
 const FinancingOverview = () => {
   const { state } = useContext(store);
-  const financeListItems = mapStateToFinanceItems(state.financingConfig);
+  const financeListItems = mapStateToFinanceItems(state.financingConfig, state.interestRate);
 
   console.log('state', state);
 

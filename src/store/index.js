@@ -2,6 +2,7 @@ import React, {createContext, useReducer} from 'react';
 
 const initialState = {
   financingType: '',
+  interestRate: 0.03,
   financingConfig: {
     paymentTerms: 'Monthly',
     duration: 48,
@@ -11,11 +12,10 @@ const initialState = {
     costPerTerm: 60,
     paybackPerTerm: 58,
     interestPerTerm: 2,
-    interestRate: 0.03,
   },
   extras: [],
   shippingMethod: {
-    name: 'Deliver to the dealer',
+    name: 'Free delivery',
     price: 0,
   }
 }

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useContext, useEffect} from "react";
 import { Link } from "react-router-dom";
 import styles from "./PaymentTerms.module.sass";
 import Dropdown from "../../../Dropdown"; 
@@ -7,27 +7,51 @@ import cn from "classnames";
 import NumberFormat from "react-number-format";
 
 import { useCart } from "react-use-cart"
-// import { store } from "../../../store";
+import { store } from "../../../../store";
+
+
 
 const PaymentTerms =(props) => {
   const { cartTotal } = useCart();
-  //const globalState = useContext(store);
+  const { state, dispatch } = useContext(store);
 
-  const totalPrice = cartTotal + 50//globalState.shippingMethod.price;
-  const interest = 0.03
+  const totalPrice = cartTotal + state.shippingMethod.price;
+  const interest = state.interestRate
+
+  const terms = state.financingConfig
 
   const paymentTerms = ["Monthly", "Quarterly", "Semi-annually", "Annually"];
-  const [paymentTerm, setPaymentTerm] = useState(paymentTerms[0]);
+  const [paymentTerm, setPaymentTerm] = useState(terms.paymentTerms);
   const durationOptions = [12, 24, 36, 48];
-  const [duration, setDuration] = useState(durationOptions[3]);
+  const [duration, setDuration] = useState(terms.duration);
   const downPaymentMin = 0;
   const downPaymentMax = totalPrice;
-  const [downPayment, setDownPayment] = useState(downPaymentMax/5);
+  const [downPayment, setDownPayment] = useState(terms.downPayment);
 
-  const [financeAmount, setFinanceAmount] = useState(0);
-  const [paybackAmount, setPaybackAmount] = useState(0);
-  const [pricePerTerm, setPricePerTerm] = useState(0);
-  const [interestPerTerm, setInterestPerTerm] = useState(0);    
+  const [financeAmount, setFinanceAmount] = useState(terms.financingAmount);
+  const [paybackAmount, setPaybackAmount] = useState(terms.paybackPerTerm);
+  const [pricePerTerm, setPricePerTerm] = useState(terms.pricePerTerm);
+  const [interestPerTerm, setInterestPerTerm] = useState(terms.interestPerTerm);
+  
+  function setPaymentTerms() {
+    let financingConfig = {
+      paymentTerms: paymentTerm,
+      duration: duration,
+      totalCost: totalPrice,
+      downPayment: downPayment,
+      financingAmount: financeAmount,
+      costPerTerm: pricePerTerm,
+      paybackPerTerm: paybackAmount,
+      interestPerTerm: interestPerTerm,
+    }
+
+    console.log(financingConfig);
+
+    dispatch({
+      type: "SET_FINANCING_CONFIGURATION",
+      payload: financingConfig
+    })
+  }
 
   function calculateFinancialTerms(totalPrice, downPayment, duration, paymentTerm, interest){
     const financeAmount = totalPrice - downPayment;
@@ -38,7 +62,7 @@ const PaymentTerms =(props) => {
         numPaymentTerms = duration;
         break;
       case "Quarterly":
-       numPaymentTerms = duration/3;
+      numPaymentTerms = duration/3;
         break;
       case "Semi-annually":
         numPaymentTerms = duration/6;
@@ -55,7 +79,7 @@ const PaymentTerms =(props) => {
     setFinanceAmount(financeAmount);
     setPaybackAmount(paybackAmount);
     setPricePerTerm(pricePerTerm);
-    setInterestPerTerm(interestPerTerm);
+    setInterestPerTerm(interestPerTerm)
   }
 
   useEffect(()=>{
@@ -65,17 +89,18 @@ const PaymentTerms =(props) => {
 
   const handleDownPaymentChange = (newValue) => {
     setDownPayment(newValue);
-    calculateFinancialTerms(totalPrice, downPayment, duration, paymentTerm, interest);
+    calculateFinancialTerms(totalPrice, downPayment, duration, paymentTerm, interest)
   };
 
   const handleDurationChange = (newValue) => {
     setDuration(newValue);
-    calculateFinancialTerms(totalPrice, downPayment, duration, paymentTerm, interest);
+    calculateFinancialTerms(totalPrice, downPayment, duration, paymentTerm, interest)
+
   };
 
   const handlePaymentTermChange = (newValue) => {
     setPaymentTerm(newValue);
-    calculateFinancialTerms(totalPrice, downPayment, duration, paymentTerm, interest);
+    calculateFinancialTerms(totalPrice, downPayment, duration, paymentTerm, interest)
   };
 
 
@@ -121,7 +146,7 @@ const PaymentTerms =(props) => {
       <Link to={{
         pathname: '/checkout',
         search: `?financing=${true}`
-      }} ><button className={cn("button", styles.continueButton)}>Continue</button></Link>
+      }} ><button onClick={()=>{setPaymentTerms()}} className={cn("button", styles.continueButton)}>Continue</button></Link>
     </div>
     );
 }
