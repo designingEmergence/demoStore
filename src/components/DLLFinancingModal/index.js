@@ -55,6 +55,7 @@ const DLLFinancingModal = ({show, setShow}) => {
         onClose={handleClose}>
         <div className={styles.modal}>
           <div className={styles.modal_header}>
+            
             <img src="/images/icons/dllSymbol.svg" alt="DLL Logo" />
           </div>
           <div className={styles.modal_body}>
