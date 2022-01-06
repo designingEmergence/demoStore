@@ -31,7 +31,7 @@ const Checkout = () => {
         <div className={styles.column1}>
           <div className={styles.checkoutHeader}>
             <p className={styles.checkoutHeaderText}>Checkout</p>
-            <button className={cn("button", styles.testCredentialsButton)}>Use test credentials</button>
+            {/* <button className={cn("button", styles.testCredentialsButton)}>Use test credentials</button> */}
           </div>
           <hr className={styles.checkoutDividerLine}/>
           <CheckoutForm />
