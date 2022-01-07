@@ -5,12 +5,16 @@ import { StateProvider } from './store';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import theme from './styles/muiTheme';
+import { ThemeProvider } from '@mui/material/styles'; 
 
 ReactDOM.render(
   <React.StrictMode>
     <CartProvider>
       <StateProvider>
-        <App />
+        <ThemeProvider theme={theme}>
+          <App />
+        </ThemeProvider>
       </StateProvider>
     </CartProvider>
   </React.StrictMode>,
