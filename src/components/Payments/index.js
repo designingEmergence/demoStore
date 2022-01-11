@@ -4,10 +4,13 @@ import styles from "./Payments.module.sass";
 import TextInput from "../TextInput";
 import cn from "classnames";
 
+import DLLPaymentInfoCard from '../../components/DLLPaymentInfoCard';
+import { useCart } from 'react-use-cart';
+
+
 const Payments = ({paymentMethod, paymentMethodChange}) => {
 
-  // const [paymentMethod, setPaymentMethod] = useState(paymentType);
-
+  const { cartTotal } = useCart();
 
   return (
     <>
@@ -44,6 +47,9 @@ const Payments = ({paymentMethod, paymentMethodChange}) => {
                 name="radio-buttons" />
               <p className={styles.paymentMethodTitle}>Buy now, pay later</p>
             </div>
+            {(paymentMethod === 'dll') && <div className={styles.paymentMethodSelected}>
+              <DLLPaymentInfoCard price={cartTotal}/>
+            </div>}
           </div>
         </div>
       </div>
