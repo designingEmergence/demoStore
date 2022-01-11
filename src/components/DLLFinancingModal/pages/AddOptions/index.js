@@ -5,6 +5,8 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { store } from "../../../../store";
+import copy from "../../../../data/copy";
+
 
 const AddOptions = ({setPage, nextPage}) =>{
   const globalState = useContext(store);
@@ -35,24 +37,24 @@ const AddOptions = ({setPage, nextPage}) =>{
               control={
                 <Checkbox checked={insurance} onChange={()=>setInsurance(!insurance)} value="insurance" />
               }
-              label="Add property casualty insurance"/>
-          <p className={styles.checkboxGroup_price}>$80/month</p>
+              label={copy.extras.option1.text}/>
+          <p className={styles.checkboxGroup_price}>{copy.extras.option1.price}</p>
         </div>
         <div className={styles.checkboxContainer}>
           <FormControlLabel
             control={
               <Checkbox checked={maintenance} onChange={()=>setMaintenance(!maintenance)} value="maintenance" />
             }
-            label="Add maintenance" />
-            <p className={styles.checkboxGroup_price}>$40/month</p>
+            label={copy.extras.option2.text}/>
+            <p className={styles.checkboxGroup_price}>{copy.extras.option2.price}</p>
         </div>
         <div className={styles.checkboxContainer}>          
           <FormControlLabel
             control={
               <Checkbox checked={iot} onChange={()=>setIot(!iot)} value="iot" />
             }
-            label="Add IoT Subscription" />
-          <p className={styles.checkboxGroup_price}>$25/month</p>
+            label={copy.extras.option3.text} />
+          <p className={styles.checkboxGroup_price}>{copy.extras.option3.price}</p>
         </div>
       </FormGroup>
       <button onClick={()=>{

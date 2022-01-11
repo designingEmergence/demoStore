@@ -3,6 +3,7 @@ import styles from "./OwnItUseIt.module.sass";
 import { useCart } from "react-use-cart"
 import { store } from "../../../../store";
 import NumberFormat from "react-number-format";
+import copy from "../../../../data/copy";
 
 const OwnItUseIt = ({selectionFunction}) => {
   const { cartTotal } = useCart();
@@ -36,7 +37,7 @@ const OwnItUseIt = ({selectionFunction}) => {
   return (
     <div className={styles.page}>
       <p className={styles.page_title}>Own it or Use it?</p>
-      <p className={styles.page_subtitle}>Please select whether you want to own the product or use it for a short period of time to configure the financing options.</p>
+      <p className={styles.page_subtitle}>Please select whether you want to own the {copy.assetDescriptor} or use it for a short period of time to configure the financing options.</p>
 
       <div className={styles.useItContainer}>
         <FinancingTypeContainer
