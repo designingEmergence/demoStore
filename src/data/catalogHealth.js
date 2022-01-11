@@ -15,7 +15,7 @@ const productCatalog = [
     "id": "2",
     "name": "iTero Element 5D",
     "description": "The iTero Element 5D is a revolutionary imaging system that delivers a seamless experience. iTero Element 5D imaging systems are built upon the success of the iTero Element portfolio, which features innovative technology like Near-Infrared Technology (NIRI) to aid in caries detection above the gingiva. Take your practice to the next level with enhanced productivity and patient experiences.",
-    "price": 23999,
+    "price": 24999,
     "image": "images/products/2/1.jpg",
     "images": ["images/products/2/1.jpg", "images/products/2/2.jpg"],
     "available": true,

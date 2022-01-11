@@ -1,8 +1,8 @@
 const copy = {
   banner: {
-    title: 'Imaging Systems',
-    subtitle: 'iTero Element 5D',
-    price: '$24,999',
+    title: 'Apple Computers',
+    subtitle: 'Macbook Pro',
+    price: '$1,999',
   },
   productGridName: 'Products',
   shipping: {
@@ -11,7 +11,7 @@ const copy = {
       delivery: 'Estimated delivery time: 5-7 days'
     },
     option2: {
-      type: 'Deliver with DHL ($500)',
+      type: 'Deliver with DHL ($50)',
       delivery: 'Estimated delivery time: 1-2 days'
     },
   }
