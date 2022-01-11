@@ -4,15 +4,10 @@ import styles from "./Payments.module.sass";
 import TextInput from "../TextInput";
 import cn from "classnames";
 
-const Payments = () => {
+const Payments = ({paymentMethod, paymentMethodChange}) => {
 
-  const [paymentMethod, setPaymentMethod] = useState("card");
+  // const [paymentMethod, setPaymentMethod] = useState(paymentType);
 
-  const handlePaymentMethodChange = (e) => {
-    setPaymentMethod(e.target.value);
-    console.log(e.target)
-    console.log(paymentMethod);
-  };
 
   return (
     <>
@@ -24,7 +19,7 @@ const Payments = () => {
             <div className={styles.paymentMethodSelector}>
               <Radio 
                 checked={paymentMethod==="card"} 
-                onChange={handlePaymentMethodChange} 
+                onChange={paymentMethodChange} 
                 value="card"
                 name="radio-buttons" />
               <p className={styles.paymentMethodTitle}>Card</p>
@@ -44,7 +39,7 @@ const Payments = () => {
             <div className={styles.paymentMethodSelector}>
               <Radio 
                 checked={paymentMethod==="dll"} 
-                onChange={handlePaymentMethodChange} 
+                onChange={paymentMethodChange} 
                 value="dll"
                 name="radio-buttons" />
               <p className={styles.paymentMethodTitle}>Buy now, pay later</p>
