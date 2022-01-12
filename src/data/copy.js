@@ -2,7 +2,7 @@ const copy = {
   banner: {
     title: 'Imaging Systems',
     subtitle: 'iTero Element 5D',
-    price: '$24,999',
+    price: '$23,999',
   },
   assetDescriptor: "product",
   productGridName: 'Products',
