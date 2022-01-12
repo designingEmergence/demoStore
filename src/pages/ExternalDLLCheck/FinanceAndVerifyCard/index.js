@@ -103,13 +103,15 @@ const FinanceAndVerifyCard = () => {
     if (page === 1) setPage(0);
     else if (page === 2) setPage(0);
     else if (page === 3) setPage(1);
+    else if (page === 4) setPage(0);
+    else if (page === 5) setPage(4);
   }
 
   return (
     <>
       <div className={styles.card}>
         <div className={styles.header}>
-          {page != 0 && <button onClick={handlePreviousPage}><Icon name="arrow-left" size="16" className={styles.arrowLeft} /></button>}
+          {(page != 0 || 6) && <button onClick={handlePreviousPage}><Icon name="arrow-left" size="16" className={styles.arrowLeft} /></button>}
           <img  src="/images/icons/dllSymbol.svg" alt="DLL Logo" />
         </div>
           {page === 0 && <OwnItUseIt selectionFunction={handleFinancingType}/>}
