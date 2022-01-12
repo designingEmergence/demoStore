@@ -1,7 +1,7 @@
 const copy = {
   banner: {
     title: 'Apple Computers',
-    subtitle: 'Macbook Pro',
+    subtitle: 'MacBook Pro',
     price: '$1,999',
   },
   assetDescriptor: "device",

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { clearAllBodyScrollLocks } from "body-scroll-lock";
 import styles from './ExternalDLLCheck.module.sass';
 import VerifyCard from './VerifyCard';
+import FinanceAndVerifyCard from "./FinanceAndVerifyCard";
 import { useLocation } from "react-router-dom";
 
 
@@ -16,7 +17,8 @@ const ExternalDLLCheck = () => {
   return (
     <>
       <div className={styles.externalDLLCheck}>
-        <VerifyCard />
+        {/* <VerifyCard /> */}
+        <FinanceAndVerifyCard />
       </div>
     </>
   );

@@ -1,0 +1,86 @@
+@import ../../../styles/helpers
+
+.card
+  background-color: $n8
+  width: 544px
+  min-height: 540px
+  border-radius: 16px
+  padding: 24px 48px 48px 48px
+  display: flex
+  flex-direction: column
+
+.header
+  display: flex
+  justify-content: center
+  align-items: center
+  margin-bottom: 32px
+
+.arrowLeft
+  position: relative
+  left: -200px
+
+.title
+  +dm-sans
+  +headline-4
+  margin-bottom: 12px
+
+.subtitle
+  +poppins
+  font-weight: 400
+  font-size: 16px
+  line-height: 24px
+  margin-bottom: 24px
+
+.pageContent
+  flex-grow: 1
+  display: flex
+  flex-direction: column
+
+.VerifyDetails__inputs
+  margin-bottom: auto
+  margin-top: 14px
+  flex-grow: 1
+
+.continueButton
+  margin-top: auto
+  width: 100%
+
+.page_title
+  +dm-sans
+  +headline-4
+  margin-bottom: 12px
+
+.page_subtitle
+  +poppins
+  font-weight: 400
+  font-size: 16px
+  line-height: 24px
+  margin-bottom: 24px
+
+.pageIcon
+  text-align: center
+
+.ConfirmPage__countdown
+  display: flex
+  align-items: center
+  justify-content: center
+  margin-top: 24px
+
+.redirectMessage
+  margin-right: 12px
+  +dm-sans
+  font-size: 16px
+  line-height: 16px
+  font-weight: 700
+
+.redirectIcon
+  -webkit-animation: rotation 1s linear infinite
+  -moz-animation: rotation 1s linear infinite
+  animation: rotation 1s linear infinite
+
+@keyframes rotation
+  from 
+    transform: rotate(0deg)
+  to 
+    transform: rotate(360deg)
+    
