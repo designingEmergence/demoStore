@@ -31,8 +31,6 @@ function OwnItPage() {
 
 
 const DLLFinancingModal = ({show, setShow}) => {
-  const globalState = useContext(store);
-  console.log('globalState: ', globalState)
 
   const [open, setOpen] = useState(show);
   const handleOpen = () => setShow(true);

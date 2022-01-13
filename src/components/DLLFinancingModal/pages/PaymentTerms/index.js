@@ -11,7 +11,7 @@ import { store } from "../../../../store";
 
 
 
-const PaymentTerms =(props) => {
+const PaymentTerms =({linkToCheckout = true, setPage, nextPage}) => {
   const { cartTotal } = useCart();
   const { state, dispatch } = useContext(store);
 
@@ -44,13 +44,14 @@ const PaymentTerms =(props) => {
       paybackPerTerm: paybackAmount,
       interestPerTerm: interestPerTerm,
     }
-
-    console.log(financingConfig);
-
     dispatch({
       type: "SET_FINANCING_CONFIGURATION",
       payload: financingConfig
     })
+
+    if(!linkToCheckout) {
+      setPage(nextPage)
+    }
   }
 
   function calculateFinancialTerms(totalPrice, downPayment, duration, paymentTerm, interest){
@@ -143,10 +144,12 @@ const PaymentTerms =(props) => {
           <NumberFormat value={interestPerTerm} displayType={'text'} thousandSeparator={true} prefix={'$'} decimalScale={0}renderText={value => <p className={styles.paymentTermsResultLine_amount}>{value}</p>}/>
         </div>
       </div>
-      <Link to={{
+      {linkToCheckout ?  <Link to={{
         pathname: '/checkout',
         search: `?financing=${true}`
       }} ><button onClick={()=>{setPaymentTerms()}} className={cn("button", styles.continueButton)}>Continue</button></Link>
+
+      : <button onClick={()=>{setPaymentTerms()}} className={cn("button", styles.continueButton)}>Continue</button>}
     </div>
     );
 }

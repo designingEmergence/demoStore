@@ -13,10 +13,15 @@ import { useNavigate } from "react-router";
 const Checkout = () => {
   let navigate = useNavigate();
 
+  const [paymentMethod, setPaymentMethod] = useState('card');
+
   const [searchParams, setSearchParams] = useSearchParams();
   const [redirect, setRedirect] = useState(false);
-
   const isFinancing = searchParams.get('financing') === 'true';
+
+  const handlePaymentMethodChange = (e) => {
+    setPaymentMethod(e.target.value);
+  };
 
   function redirectWithDelay(path, delay) {
     setRedirect(true);
@@ -41,10 +46,16 @@ const Checkout = () => {
             <button onClick={()=> redirectWithDelay('/external-dll-check',3000)}className={cn("button", styles.placeOrderButton)}>
               {(!redirect ? 'Get Financing': 'Redirecting...')}
             </button>
-          </div>:
+          </div> :
           <div>
-            <Payments />
-            <button onClick={()=> navigate('/thankyou')} className={cn("button", styles.placeOrderButton)}>Place Order</button>
+            <Payments paymentMethod={paymentMethod} paymentMethodChange={handlePaymentMethodChange}/>
+              {(paymentMethod === 'card') ? 
+              <button onClick={()=> navigate('/thankyou')} className={cn("button", styles.placeOrderButton)}>
+                Place Order
+              </button> :  
+              <button onClick={()=> redirectWithDelay('/external-dll-check',3000)}className={cn("button", styles.placeOrderButton)}>
+                {(!redirect ? 'Get Financing': 'Redirecting...')}
+              </button>}
           </div>}
         </div>
         <div className={styles.column2}>

@@ -42,7 +42,7 @@ const OwnItUseIt = ({selectionFunction}) => {
       <div className={styles.useItContainer}>
         <FinancingTypeContainer
           title="I want to own it"
-          buttonTitle="Pay in installaments from"
+          buttonTitle="Pay in installments from"
           price={cartTotal/50}
           buttonSubtitle="based on 48 months" 
           variableValue="Own"/>
