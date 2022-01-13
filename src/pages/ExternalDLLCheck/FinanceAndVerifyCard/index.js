@@ -111,7 +111,7 @@ const FinanceAndVerifyCard = () => {
     <>
       <div className={styles.card}>
         <div className={styles.header}>
-          {(page != 0 || 6) && <button onClick={handlePreviousPage}><Icon name="arrow-left" size="16" className={styles.arrowLeft} /></button>}
+          {!(page === 0 || page === 6) && <button onClick={handlePreviousPage}><Icon name="arrow-left" size="16" className={styles.arrowLeft} /></button>}
           <img  src="/images/icons/dllSymbol.svg" alt="DLL Logo" />
         </div>
           {page === 0 && <OwnItUseIt selectionFunction={handleFinancingType}/>}

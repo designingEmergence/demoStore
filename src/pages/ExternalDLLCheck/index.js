@@ -17,8 +17,8 @@ const ExternalDLLCheck = () => {
   return (
     <>
       <div className={styles.externalDLLCheck}>
-        <VerifyCard />
-        {/* <FinanceAndVerifyCard /> */}
+        {/* <VerifyCard /> */}
+        <FinanceAndVerifyCard />
       </div>
     </>
   );
