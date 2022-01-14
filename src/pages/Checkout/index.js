@@ -8,6 +8,7 @@ import FinancingOverview from '../../components/FinancingOverview';
 import cn from "classnames";
 import { useSearchParams } from 'react-router-dom';
 import { useNavigate } from "react-router";
+import { useCart } from "react-use-cart";
 
 
 const Checkout = () => {
@@ -50,7 +51,9 @@ const Checkout = () => {
           <div>
             <Payments paymentMethod={paymentMethod} paymentMethodChange={handlePaymentMethodChange}/>
               {(paymentMethod === 'card') ? 
-              <button onClick={()=> navigate('/thankyou')} className={cn("button", styles.placeOrderButton)}>
+              <button onClick={()=> {
+                navigate('/thankyou')
+              }} className={cn("button", styles.placeOrderButton)}>
                 Place Order
               </button> :  
               <button onClick={()=> redirectWithDelay('/external-dll-check',3000)}className={cn("button", styles.placeOrderButton)}>
