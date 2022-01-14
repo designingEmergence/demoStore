@@ -12,27 +12,71 @@
   line-height: 24px
   margin-bottom: 24px
 
-.financingTypeContainer_title
-  +poppins
-  +body-bold-2
-  margin-bottom: 12px
+.useItContainer
+  display: flex
+  flex-direction: row
+  align-items: center
+  justify-content: space-between
+  margin-bottom: 24px 
+
+.financingTypeContainer
+  width: 48%
+  
 
 .financingTypeContainer_button
   width: 100%
-  padding: 24px
+  height: 400px
+  padding: 12px
   border: 2px solid #E6E8EC
   border-radius: 8px
   margin-bottom: 40px
+  text-align: center
+  display: flex
+  flex-direction: column
+  justify-content: flex-start
+  background-color: $n7
+
+
+.financingTypeContainer_button:hover
+  background-color: $n6
+
+.financingTypeContainer_title
+  margin: 0 auto
+  +poppins
+  +headline-4
+  font-size: 24px
+ 
+.financingTypeContainer_subtitle
+  +poppins
+  +caption-1
+  margin-bottom: 24px
+
+.financingTypeContainer_price
+  margin: 0 auto
+  +poppins
+  +headline-4
+  margin-bottom: 12px
+
+.financingTypeContainer_priceSubtitle
+  +caption-2
+  +poppins
+  line-height: 14px
+  height: 30px
+  margin-bottom: 24px
+
+.financingTypeContainerProperties
   text-align: left
 
-.financingTypeContainer_button_title
-  +poppins
-  +body-bold-2
+.property
+  margin-bottom: 6px
+  display: flex
 
-.financingTypeContainer_button_price
-  +poppins
-  +body-bold-1
+.propertyIcon
+  margin-bottom: 18px
+  color:$n3
+  margin-right: 6px
 
-.financingTypeContainer_button_subtitle
-  +caption-1
+.propertyText
   +poppins
+  +caption-2
+  color: $n3
