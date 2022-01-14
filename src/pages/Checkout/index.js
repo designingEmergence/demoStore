@@ -8,7 +8,6 @@ import FinancingOverview from '../../components/FinancingOverview';
 import cn from "classnames";
 import { useSearchParams } from 'react-router-dom';
 import { useNavigate } from "react-router";
-import { useCart } from "react-use-cart";
 
 
 const Checkout = () => {

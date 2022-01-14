@@ -1,10 +1,16 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styles from './ThankYou.module.sass';
 import cn from 'classnames';
 import { useNavigate } from "react-router";
+import { useCart } from 'react-use-cart'
 
 const ThankYou = () => {
   let navigate = useNavigate();
+  const { emptyCart } = useCart();
+
+  useEffect(() => {
+    emptyCart();
+  });
 
   return (
     <>
