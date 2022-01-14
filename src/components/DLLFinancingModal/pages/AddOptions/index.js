@@ -28,7 +28,7 @@ const AddOptions = ({setPage, nextPage}) =>{
   return (
     <div className={styles.page}>
       <div className={styles.addOptionsHeader}>
-        <p className={styles.page_title}>Own it through financing</p>
+        <p className={styles.page_title}>Buy it through financing</p>
         <p className={styles.page_subtitle}>Please select the additional services you would like to include with your purchase</p>
       </div>
       <FormGroup className={styles.checkboxGroup}>

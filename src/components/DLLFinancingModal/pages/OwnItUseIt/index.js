@@ -13,6 +13,9 @@ import ContactlessOutlinedIcon from '@mui/icons-material/ContactlessOutlined';
 import UpgradeOutlinedIcon from '@mui/icons-material/UpgradeOutlined';
 import HandymanOutlinedIcon from '@mui/icons-material/HandymanOutlined';
 
+import splitbee from '@splitbee/web';
+
+
 const ownItProperties = [
   {
     icon: <Inventory2OutlinedIcon fontSize="16px" />,
@@ -54,6 +57,7 @@ const OwnItUseIt = ({selectionFunction}) => {
       type: "SET_FINANCING_TYPE",
       payload: type,
     });
+    splitbee.track("Financing Type: " + type)
     selectNextPage(type);
   } 
 

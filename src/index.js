@@ -6,7 +6,13 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import theme from './styles/muiTheme';
-import { ThemeProvider } from '@mui/material/styles'; 
+import { ThemeProvider } from '@mui/material/styles';
+
+import splitbee from '@splitbee/web';
+
+splitbee.init({
+  token: 'G0MCPR99PG6B'
+})
 
 ReactDOM.render(
   <React.StrictMode>

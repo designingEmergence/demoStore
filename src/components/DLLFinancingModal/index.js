@@ -12,7 +12,7 @@ import Icon from "../Icon";
 function UseItPage() {
   return (
     <div className={styles.page}>
-      <p className={styles.page_title}>Use it through financing</p>
+      <p className={styles.page_title}>Lease it through financing</p>
       <p className={styles.page_subtitle}>Configure the options to generate the quote for using the products</p>
       <PaymentTerms />
     </div>
@@ -22,7 +22,7 @@ function UseItPage() {
 function OwnItPage() {
   return (
     <div className={styles.page}>
-      <p className={styles.page_title}>Own it through financing</p>
+      <p className={styles.page_title}>Buy it through financing</p>
       <p className={styles.page_subtitle}>Configure the options to generate the quote for owning the products</p>
       <PaymentTerms />
     </div>
