@@ -71,9 +71,9 @@ const BagOverview = ({showPaymentOptions=false}) => {
 
         {showPaymentOptions && <div className={styles.bagOverviewPaymentOptions}>
           <DLLPaymentInfoCard price={cartTotal + shippingPrice}/>
-          {/* <button onClick={()=> navigate('/checkout')} className={cn("button", styles.fullWidthButton, styles.checkoutButton)}>Checkout</button> */}
-          <button onClick={()=> setShowDLLFinancing(true)} className={cn("button", styles.fullWidthButton, styles.dllButton)}>DLL Financing Options</button>
-          <DLLFinancingModal show={showDLLFinancing} setShow={setShowDLLFinancing}/>
+          <button onClick={()=> navigate('/checkout')} className={cn("button", styles.fullWidthButton, styles.checkoutButton)}>Checkout</button>
+          {/* <button onClick={()=> setShowDLLFinancing(true)} className={cn("button", styles.fullWidthButton, styles.dllButton)}>DLL Financing Options</button>
+          <DLLFinancingModal show={showDLLFinancing} setShow={setShowDLLFinancing}/> */}
           </div>}
       </div>
     </>
