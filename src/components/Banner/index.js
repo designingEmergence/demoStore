@@ -15,9 +15,9 @@ const Banner = () => {
           <p className={styles.bannerTitle}>{copy.banner.title}</p>
           <p className={styles.bannerSubtitle}>{copy.banner.subtitle}</p>
           <p className={styles.bannerPrice}>{copy.banner.price}</p>
-          <Link className={cn("button", styles.button)} to="/">
+          {/* <Link className={cn("button", styles.button)} to="/">
               Explore & Buy
-          </Link>
+          </Link> */}
         </div>
       </div>      
     </>
