@@ -17,6 +17,22 @@ const initialState = {
   shippingMethod: {
     name: 'Free delivery',
     price: 0,
+  },
+  login: {
+    email: "",
+    isSignator: 'No',
+    signatoryName: "",
+    signatoryEmail: "",
+    rememberMe: false,
+  },
+  signatoryAuthority: {
+    firstName: "",
+    lastName: "",
+    jobTitle: "",
+    email: "",
+    phoneNumber: "",
+    consent: false,
+    hasSignatory: false,
   }
 }
 const store = createContext(initialState);
@@ -37,6 +53,12 @@ const StateProvider = ({ children }) => {
       case 'SET_SHIPPING_METHOD':
         const shippingState = { ...state, shippingMethod: action.payload };
         return shippingState;
+      case 'SET_SIGNATORY_AUTHORITY':
+        const signatoryAuthorityState = { ...state, signatoryAuthority: action.payload };
+        return signatoryAuthorityState;
+      case 'SET_LOGIN':
+        const loginState = { ...state, login: action.payload };
+        return loginState;
       default:
         throw new Error();
     };

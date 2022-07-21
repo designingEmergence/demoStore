@@ -1,22 +1,31 @@
 [class^="button"]
+  @import '../helpers'
   display: inline-flex
   justify-content: center
   align-items: center
   height: 48px
-  padding: 0 24px
-  background: $n1
-  border-radius: 24px
+  padding: 8px 10px
+  background: black
+  border: 2px solid black
   +button-1
   text-align: center
   color: $n8
   transition: all .2s
   &:hover
-    background: darken($n1, 15)
+    background: white
+    color: black
+    path
+      fill: none
+      stroke: black
   &.disabled
     opacity: .5
+    background-color: $n300
+    color: $n500
     pointer-events: none
-  svg
-    fill: $n8
+    border: 2px solid $n300
+  path
+    fill: none
+    stroke: white
     transition: all .2s
   &:not([class^="button-circle"])
     svg
@@ -24,11 +33,22 @@
         margin-right: 15px
       &:last-child
         margin-left: 15px
+  span.icon
+    float: left
+    width: 20px
+    height: 20px
+    margin-right: 8px
 
 .button-stroke
   background: none
   box-shadow: 0 0 0 2px $n6 inset
   color: $n2
+  &:disabled
+    opacity: .5
+    background-color: $n300
+    color: $n500
+    pointer-events: none
+    border: 2px solid $n300
   svg
     fill: $n2
   +dark-common
@@ -47,24 +67,74 @@
       background: $n3
       box-shadow: 0 0 0 2px $n3 inset
 
-.button-black
-  background: $n1
-  &:hover,
+.button-primary
+  background: black
+  border: 2px solid black
+  svg
+    fill: white
+  &:hover
+    background: white
+    color: black
   &.active
-    background: $n2
+    background: black
   +dark-common
     box-shadow: inset 0 0 0 2px $n3
     &:hover,
     &.active
-      background: $n3
+      background: black
 
-.button-white
-  background: $n8
-  color: $n2
+.button-secondary
+  background: white
+  color: black
+  border: 2px solid white
   svg
-    fill: $n2
+    fill: black
   &:hover
-    background: $n7
+    background: black
+    color: white
+  &.active
+    background: white
+  +dark-common
+    box-shadow: inset 0 0 0 2px $n3
+    &:hover,
+    &.active
+      background: white
+
+.button-terciary
+  background: $p500
+  color: white
+  border: 2px solid $p500
+  svg
+    fill: white
+  &:hover
+    background: $p500
+    color: white
+    border: 2px solid $p500
+  &.active
+    background: $p500
+  +dark-common
+    box-shadow: inset 0 0 0 2px $n3
+    &:hover,
+    &.active
+      background: $p500
+
+.button-quaternary
+  background: white
+  color: black
+  border: 1px solid black
+  svg
+    fill: white
+  &:hover
+    background: white
+    color: black
+    border: 1px solid black
+  &.active
+    background: white
+  +dark-common
+    box-shadow: inset 0 0 0 2px $n3
+    &:hover,
+    &.active
+      background: white
 
 .button-small
   height: 40px

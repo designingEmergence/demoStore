@@ -8,18 +8,23 @@ import FinancingOverview from '../../components/FinancingOverview';
 import cn from "classnames";
 import { useSearchParams } from 'react-router-dom';
 import { useNavigate } from "react-router";
+import { Checkbox } from '@mui/material';
+import CheckoutValidationModal from '../../components/CheckoutValidationModal';
 
 
 const Checkout = () => {
   let navigate = useNavigate();
 
-  const [paymentMethod, setPaymentMethod] = useState('card');
-
   const [searchParams, setSearchParams] = useSearchParams();
-  const [redirect, setRedirect] = useState(false);
   const isFinancing = searchParams.get('financing') === 'true';
 
+  const [paymentMethod, setPaymentMethod] = useState(isFinancing ? 'financing' : 'card');
+  const [showCheckoutValidation, setShowCheckoutValidation] = useState(false);
+
+  const [redirect, setRedirect] = useState(false);
+
   const handlePaymentMethodChange = (e) => {
+    console.log(e.target.value);
     setPaymentMethod(e.target.value);
   };
 
@@ -30,39 +35,48 @@ const Checkout = () => {
     } , delay);
   }
 
+  const label = { inputProps: { 'aria-label': 'I agree to the DLL Finance Service and Privacy Policy.' } };
+
   return (
     <>
       <div className={styles.checkoutContainer}>
         <div className={styles.column1}>
           <div className={styles.checkoutHeader}>
             <p className={styles.checkoutHeaderText}>Checkout</p>
-            {/* <button className={cn("button", styles.testCredentialsButton)}>Use test credentials</button> */}
           </div>
           <hr className={styles.checkoutDividerLine}/>
           <CheckoutForm />
           <Shipping />
-          {isFinancing ? <div>
-            <FinancingOverview />
-            <button onClick={()=> redirectWithDelay('/external-dll-check',3000)}className={cn("button", styles.placeOrderButton)}>
-              {(!redirect ? 'Get Financing': 'Redirecting...')}
-            </button>
-          </div> :
+          <p className={styles.paymentMethodTitle}>Payment Method</p>
+          <div>
+            <FinancingOverview paymentMethod={paymentMethod} paymentMethodChange={handlePaymentMethodChange} />
+          </div>
           <div>
             <Payments paymentMethod={paymentMethod} paymentMethodChange={handlePaymentMethodChange}/>
-              {(paymentMethod === 'card') ? 
+              <div className={styles.terms}>
+                <Checkbox   sx={{
+                  color: '#000000',
+                  '&.Mui-checked': {
+                    color: '#000000',
+                  },
+                }}/>
+                <p>I agree to the <a href="">DLL Finance Service</a> and <a href="">Privacy Policy</a>.</p>
+              </div>
+              {(paymentMethod !== 'card') ? 
               <button onClick={()=> {
-                navigate('/thankyou')
+                setShowCheckoutValidation(true);
               }} className={cn("button", styles.placeOrderButton)}>
-                Place Order
-              </button> :  
-              <button onClick={()=> redirectWithDelay('/external-dll-check',3000)}className={cn("button", styles.placeOrderButton)}>
                 {(!redirect ? 'Get Financing': 'Redirecting...')}
+              </button> :  
+              <button onClick={()=> redirectWithDelay('/thankyou',3000)}className={cn("button", styles.placeOrderButton)}>
+                Place Order
               </button>}
-          </div>}
+          </div>
         </div>
         <div className={styles.column2}>
           <BagOverview /> 
         </div>
+        <CheckoutValidationModal show={showCheckoutValidation} setShow={setShowCheckoutValidation}/>
       </div>
     </>
   );

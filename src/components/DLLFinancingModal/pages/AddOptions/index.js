@@ -28,14 +28,19 @@ const AddOptions = ({setPage, nextPage}) =>{
   return (
     <div className={styles.page}>
       <div className={styles.addOptionsHeader}>
-        <p className={styles.page_title}>Buy it through financing</p>
+        <p className={styles.page_title}><span className={styles.own_it}>Own it</span> through financing</p>
         <p className={styles.page_subtitle}>Please select the additional services you would like to include with your purchase</p>
       </div>
       <FormGroup className={styles.checkboxGroup}>
         <div className={styles.checkboxContainer}>
           <FormControlLabel
               control={
-                <Checkbox checked={insurance} onChange={()=>setInsurance(!insurance)} value="insurance" />
+                <Checkbox checked={insurance} onChange={()=>setInsurance(!insurance)} value="insurance" sx={{
+                  color: '#000000',
+                  '&.Mui-checked': {
+                      color: '#000000',
+                  },
+              }} />
               }
               label={copy.extras.option1.text}/>
           <p className={styles.checkboxGroup_price}>{copy.extras.option1.price}</p>
@@ -43,7 +48,12 @@ const AddOptions = ({setPage, nextPage}) =>{
         <div className={styles.checkboxContainer}>
           <FormControlLabel
             control={
-              <Checkbox checked={maintenance} onChange={()=>setMaintenance(!maintenance)} value="maintenance" />
+              <Checkbox checked={maintenance} onChange={()=>setMaintenance(!maintenance)} value="maintenance" sx={{
+                color: '#000000',
+                '&.Mui-checked': {
+                    color: '#000000',
+                },
+            }} />
             }
             label={copy.extras.option2.text}/>
             <p className={styles.checkboxGroup_price}>{copy.extras.option2.price}</p>
@@ -51,7 +61,12 @@ const AddOptions = ({setPage, nextPage}) =>{
         <div className={styles.checkboxContainer}>          
           <FormControlLabel
             control={
-              <Checkbox checked={iot} onChange={()=>setIot(!iot)} value="iot" />
+              <Checkbox checked={iot} onChange={()=>setIot(!iot)} value="iot" sx={{
+                color: '#000000',
+                '&.Mui-checked': {
+                    color: '#000000',
+                },
+            }} />
             }
             label={copy.extras.option3.text} />
           <p className={styles.checkboxGroup_price}>{copy.extras.option3.price}</p>

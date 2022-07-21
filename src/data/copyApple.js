@@ -1,14 +1,14 @@
 const copy = {
   banner: {
-    title: 'Apple Computers',
-    subtitle: 'MacBook Pro',
+    title: 'Computers',
+    subtitle: 'Laptop Pro',
     price: '$1,999',
   },
   assetDescriptor: "device",
   productGridName: 'Products',
   extras: {
     option1: {
-      text: 'Add Apple Care',
+      text: 'Add Product Care',
       price: '$80/month',
     },
     option2: {

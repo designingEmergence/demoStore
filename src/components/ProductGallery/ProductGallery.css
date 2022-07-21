@@ -2,12 +2,18 @@
   border-radius: 16px;
 }
 
+.image-gallery-thumbnail.active {
+  border-radius: 16px;
+  box-shadow: 0 0 0 1px black;
+}
+
 .image-gallery-thumbnail.active, .image-gallery-thumbnail:focus, .image-gallery-thumbnail:hover {
   border-color: #ffffff00;
 }
 
 .image-gallery-thumbnail{
-  width: 148px;
+  width: 104px;
+  height: 104px;
 }
 
 .image-gallery {
@@ -16,4 +22,9 @@
 
 .image-gallery-slide-wrapper {
   margin-bottom: 48px;
+}
+
+.image-gallery-thumbnails {
+  padding: 5px;
+  display: flex;
 }

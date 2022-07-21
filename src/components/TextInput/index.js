@@ -13,7 +13,7 @@ const TextInput = ({ className, label, empty, view, ...props }) => {
         className
       )}
     >
-      {label && <div className={styles.label}>{label}</div>}
+      {label && <div className={styles.label}>{label}{props.required && "*"}</div>}
       <div className={styles.wrap}>
         <input className={styles.input} {...props} />
         {view && (

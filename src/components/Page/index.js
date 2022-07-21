@@ -5,6 +5,8 @@ import { clearAllBodyScrollLocks } from "body-scroll-lock";
 import Ribbon from "../Ribbon";
 import Header from "../Header";
 import Footer from "../Footer";
+import HelpButton from '../HelpButton'
+import CookieMessage from "../CookieMessage";
 
 
 const Page = ({ 
@@ -35,6 +37,8 @@ const Page = ({
         <Header className={styles.header}/>
         <div className={styles.inner}>{children}</div>
         {!footerHide && <Footer />}
+        <HelpButton />
+        <CookieMessage/>
       </div>
     </>
     );

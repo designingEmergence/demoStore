@@ -7,6 +7,7 @@ import { useNavigate } from "react-router";
 import NumberFormat from 'react-number-format';
 import { useCart } from "react-use-cart";
 import DLLFinancingModal from "../DLLFinancingModal";
+import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRounded';
 
 
 let shippingPrice = 50;
@@ -42,7 +43,7 @@ function Cart() {
   );
 }
 
-const BagOverview = ({showPaymentOptions=false}) => {
+const BagOverview = ({showPaymentOptions=false, setShowBag}) => {
   let navigate = useNavigate();
   const { cartTotal } = useCart();
   let [showDLLFinancing, setShowDLLFinancing] = useState(false);
@@ -51,7 +52,10 @@ const BagOverview = ({showPaymentOptions=false}) => {
     <>
       <div className={styles.bagOverviewContainer}>
         
-        <p className={styles.bagOverviewTitle}>Shopping Bag</p>
+        <div className={styles.bagOverviewTitle}>
+          <p>Shopping Bag</p>
+          <KeyboardArrowUpRoundedIcon onClick={()=>{setShowBag(false)}}/>
+        </div>
         <div className={styles.bagOverviewItems}>
           <Cart />
         </div>
@@ -72,7 +76,7 @@ const BagOverview = ({showPaymentOptions=false}) => {
         {showPaymentOptions && <div className={styles.bagOverviewPaymentOptions}>
           <DLLPaymentInfoCard price={cartTotal + shippingPrice}/>
           <button onClick={()=> navigate('/checkout')} className={cn("button", styles.fullWidthButton, styles.checkoutButton)}>Checkout</button>
-          <button onClick={()=> setShowDLLFinancing(true)} className={cn("button", styles.fullWidthButton, styles.dllButton)}>DLL Financing Options</button>
+          <button onClick={()=> setShowDLLFinancing(true)} className={cn("button", styles.fullWidthButton, styles.dllButton)}>Finance with <img  src="/images/icons/logo-DLL-plus.svg" alt="DLL+ Logo" /></button>
           <DLLFinancingModal show={showDLLFinancing} setShow={setShowDLLFinancing}/>
           </div>}
       </div>

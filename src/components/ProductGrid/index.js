@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import styles from "./ProductGrid.module.sass";
 import ProductCard from "../ProductCard";
 import productCatalog  from "../../data/catalog";
-import { Link } from "react-router-dom";
+import Link from "../Link";
 import cn from "classnames";
 import copy from "../../data/copy";
 
@@ -12,7 +12,7 @@ function MultipleProducts(props) {
   const visibleItems = props.visibleItems
   return products.map((product, index) => {
     return (
-      <Link to={{
+      <Link variant='clear' to={{
         pathname: `/product`,
         search: `?id=${product.id}`
         }}>
@@ -37,7 +37,7 @@ const ProductGrid = () => {
         <div className={styles.grid}>
           <MultipleProducts products={productCatalog} visibleItems={visibleItems} />
         </div>
-        {!allProductsVisible && <button onClick={()=> setVisibleItems(visibleItems += 6)} className={cn("button-stroke", styles.showMoreButton)} >
+        {!allProductsVisible && <button onClick={()=> setVisibleItems(visibleItems += 6)} className={cn("button-secondary", styles.showMoreButton)} >
               Show More
         </button>}
       </div>

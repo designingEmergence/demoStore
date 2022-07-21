@@ -1,0 +1,232 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "variables": {
+    "AspName": "[concat('MSC-ASP-',parameters('CI'),'-',parameters('Environment'),'-','DemoStore')]",
+    "WebSiteName": "[concat('MSC-WEB-',parameters('CI'),'-',parameters('Environment'),'-','DemoStore')]",
+    "AppInsightsName": "[concat('MSC-AIS-',parameters('CI'),'-',parameters('Environment'))]",
+    "DiagnosticStorageAccountName": "[concat('mscsta',ToLower(parameters('CI')),ToLower(parameters('Environment')))]",
+    "scaleOutName": "[replace('MSC-ASP-WCRM-{Env}-DemoStore-AutoScale','{Env}',parameters('Environment'))]"
+  },
+  "parameters": {
+    "location": {
+      "type": "string",
+      "metadata": {
+        "description": "Location of the resources."
+      },
+      "allowedValues": [
+        "westeurope",
+        "northeurope"
+      ],
+      "defaultValue": "westeurope"
+    },
+    "skuName": {
+      "type": "string",
+      "defaultValue": "F1"
+    },
+    "skuCapacity": {
+      "type": "int",
+      "defaultValue": 1,
+      "minValue": 1
+    },
+    "CI": {
+      "type": "string",
+      "metadata": {
+        "description": "Configuration Item code as used in the CMDB"
+      }
+    },
+    "Environment": {
+      "type": "string",
+      "metadata": {
+        "description": "DTAP environment (DEV,TST,ACC,or PRD)"
+      }
+    }
+  },
+  "resources": [
+    {
+      "name": "[variables('WebSiteName')]",
+      "type": "Microsoft.Web/sites",
+      "tags": {
+        "[concat('hidden-related:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', variables('AspName'))]": "Resource",
+        "displayName": "Website"
+      },
+      "properties": {
+        "siteConfig": {
+          "appSettings": [
+            {
+              "name": "APPINSIGHTS_INSTRUMENTATIONKEY",
+              "value": "[reference(concat('microsoft.insights/components/', variables('AppInsightsName'))).InstrumentationKey]"
+            },
+            {
+              "name": "APPLICATIONINSIGHTS_CONNECTION_STRING",
+              "value": "[concat('InstrumentationKey=',reference(concat('microsoft.insights/components/', variables('AppInsightsName'))).InstrumentationKey)]"
+            },
+            {
+              "name": "ApplicationInsightsAgent_EXTENSION_VERSION",
+              "value": "~2"
+            },
+            {
+              "name": "SCM_DO_BUILD_DURING_DEPLOYMENT",
+              "value": "true"
+            },
+            {
+              "name": "WEBSITE_ENABLE_SYNC_UPDATE_SITE",
+              "value": "true"
+            },
+            {
+              "name": "WEBSITE_NODE_DEFAULT_VERSION",
+              "value": "16.13.0"
+            }
+          ]
+        },
+        "name": "[variables('WebSiteName')]",
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('AspName'))]"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/serverfarms/', variables('AspName'))]",
+        "[resourceId('microsoft.insights/components/', variables('AppInsightsName'))]"
+      ],
+      "apiVersion": "2018-11-01",
+      "location": "[resourceGroup().location]"
+    },
+    {
+      "apiVersion": "2015-08-01",
+      "name": "[variables('AspName')]",
+      "type": "Microsoft.Web/serverfarms",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "name": "[variables('AspName')]"
+      },
+      "sku": {
+        "name": "[parameters('skuName')]",
+        "capacity": "[parameters('skuCapacity')]"
+      }
+    },
+    {
+      "apiVersion": "2015-05-01",
+      "name": "[variables('AppInsightsName')]",
+      "type": "Microsoft.Insights/components",
+      "location": "[parameters('location')]",
+      "tags": {
+        "[concat('hidden-link:', resourceGroup().id, '/providers/Microsoft.Web/sites/', variables('WebSiteName'))]": "Resource",
+        "CCC template version": "1.0"
+      },
+      "kind": "web",
+      "properties": {
+        "Application_Type": "web",
+        "applicationId": "[variables('AppInsightsName')]"
+      }
+    },
+    {
+      "id": "[concat('/subscriptions/',subscription().subscriptionId,'/resourceGroups/',resourceGroup().name,'/providers/microsoft.insights/autoscalesettings/',variables('scaleOutName'))]",
+      "name": "[variables('scaleOutName')]",
+      "apiVersion": "2021-05-01-preview",
+      "type": "Microsoft.Insights/autoscaleSettings",
+      "location": "[parameters('location')]",
+      "tags": {},
+      "properties": {
+        "name": "[variables('scaleOutName')]",
+        "enabled": true,
+        "targetResourceUri": "[concat('/subscriptions/',subscription().subscriptionId,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Web/serverfarms/',variables('AspName'))]",
+        "profiles": [
+          {
+            "name": "Auto created scale condition",
+            "capacity": {
+              "minimum": "1",
+              "maximum": "4",
+              "default": "1"
+            },
+            "rules": [
+              {
+                "scaleAction": {
+                  "direction": "Increase",
+                  "type": "ChangeCount",
+                  "value": "1",
+                  "cooldown": "PT5M"
+                },
+                "metricTrigger": {
+                  "metricName": "CpuPercentage",
+                  "metricNamespace": "microsoft.web/serverfarms",
+                  "metricResourceUri": "[concat('/subscriptions/',subscription().subscriptionId,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Web/serverFarms/',variables('AspName'))]",
+                  "operator": "GreaterThan",
+                  "statistic": "Average",
+                  "threshold": 70,
+                  "timeAggregation": "Average",
+                  "timeGrain": "PT1M",
+                  "timeWindow": "PT10M",
+                  "Dimensions": [],
+                  "dividePerInstance": false
+                }
+              },
+              {
+                "scaleAction": {
+                  "direction": "Increase",
+                  "type": "ChangeCount",
+                  "value": "1",
+                  "cooldown": "PT5M"
+                },
+                "metricTrigger": {
+                  "metricName": "MemoryPercentage",
+                  "metricNamespace": "microsoft.web/serverfarms",
+                  "metricResourceUri": "[concat('/subscriptions/',subscription().subscriptionId,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Web/serverFarms/',variables('AspName'))]",
+                  "operator": "GreaterThan",
+                  "statistic": "Average",
+                  "threshold": 70,
+                  "timeAggregation": "Average",
+                  "timeGrain": "PT1M",
+                  "timeWindow": "PT10M",
+                  "Dimensions": [],
+                  "dividePerInstance": false
+                }
+              },
+              {
+                "scaleAction": {
+                  "direction": "Decrease",
+                  "type": "ChangeCount",
+                  "value": "1",
+                  "cooldown": "PT5M"
+                },
+                "metricTrigger": {
+                  "metricName": "CpuPercentage",
+                  "metricNamespace": "microsoft.web/serverfarms",
+                  "metricResourceUri": "[concat('/subscriptions/',subscription().subscriptionId,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Web/serverFarms/',variables('AspName'))]",
+                  "operator": "LessThan",
+                  "statistic": "Average",
+                  "threshold": 50,
+                  "timeAggregation": "Average",
+                  "timeGrain": "PT1M",
+                  "timeWindow": "PT10M",
+                  "Dimensions": [],
+                  "dividePerInstance": false
+                }
+              },
+              {
+                "scaleAction": {
+                  "direction": "Decrease",
+                  "type": "ChangeCount",
+                  "value": "1",
+                  "cooldown": "PT5M"
+                },
+                "metricTrigger": {
+                  "metricName": "MemoryPercentage",
+                  "metricNamespace": "microsoft.web/serverfarms",
+                  "metricResourceUri": "[concat('/subscriptions/',subscription().subscriptionId,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Web/serverFarms/',variables('AspName'))]",
+                  "operator": "LessThan",
+                  "statistic": "Average",
+                  "threshold": 50,
+                  "timeAggregation": "Average",
+                  "timeGrain": "PT1M",
+                  "timeWindow": "PT10M",
+                  "Dimensions": [],
+                  "dividePerInstance": false
+                }
+              }
+            ]
+          }
+        ],
+        "notifications": [],
+        "targetResourceLocation": "West Europe"
+      }
+    }
+  ]
+}

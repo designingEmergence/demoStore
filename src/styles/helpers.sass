@@ -23,10 +23,116 @@
 
 // fonts
 =dm-sans
-    font-family: 'DM Sans', sans-serif
+    font-family: 'Outfit', sans-serif
 
 =poppins
-    font-family: 'Poppins', sans-serif
+    font-family: 'Outfit', sans-serif
+
+=outfit
+    font-family: 'Outfit', sans-serif
+    font-feature-settings: 'liga' off
+
+// theme colors
+$p50: #E3F3FE
+$p100: #BBDFFF
+$p300: #5FB8FF
+$p500: #0099FF
+$p700: #0478DD
+$p900: #0248AC
+
+$s900: #FF6600
+$s700: #FF9900
+$s500: #FFBA00
+$s300: #FFD04A
+$s100: #FFEAB1
+$s50: #FFF7E0
+
+$n50: #F5F5F5
+$n100: #F5F5F5
+$n200: #EEEEEE
+$n300: #E0E0E0
+$n400: #BDBDBD
+$n500: #9E9E9E
+$n600: #757575
+$n700: #616161
+$n800: #424242
+$n900: #212121
+
+$acc1: #C1E5C0
+$acc2: #C0DAE5
+$acc3: #FDD9D9
+$acc4: #FFC3D8
+$acc5: #C4B5FD
+$acc6: #D9E8EF
+$acc7: #F9B501
+
+// theme typography
+=body-xs
+    +outfit
+    font-size: 12px
+    line-height: 16px
+
+=body-sm
+    +outfit
+    font-size: 14px
+    line-height: 20px
+
+=body-md
+    +outfit
+    font-size: 16px
+    line-height: 24px
+
+=body-lg
+    +outfit
+    font-size: 18px
+    line-height: 28px
+
+=body-xl
+    +outfit
+    font-size: 20px
+    line-height: 28px
+
+=display-xs
+    +outfit
+    font-size: 24px
+    line-height: 32px
+
+=display-sm
+    +outfit
+    font-size: 30px
+    line-height: 40px
+
+=display-md
+    +outfit
+    font-size: 36px
+    line-height: 45px
+
+=display-lg
+    +outfit
+    font-size: 46px
+    line-height: 60px
+
+=display-xl
+    +outfit
+    font-size: 60px
+    line-height: 72px
+
+=display-2xl
+    +outfit
+    font-size: 72px
+    line-height: 90px
+
+=regular
+    font-weight: 400
+
+=medium
+    font-weight: 500
+
+=semibold
+    font-weight: 600
+
+=bold
+    font-weight: 700
     
 // colors
 $p1: #0099FF
@@ -113,10 +219,8 @@ $site-width: 1419px
     text-transform: uppercase
 
 =button-1
-    +dm-sans
-    font-size: 16px
-    font-weight: 700
-    line-height: 1
+    +body-sm
+    +semibold
 
 =button-2
     +dm-sans

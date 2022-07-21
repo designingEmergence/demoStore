@@ -1,0 +1,45 @@
+@import ../../styles/helpers
+
+.tooltipContainer
+    position: relative
+    width: 2em
+
+.tooltipBox
+    display: none
+
+.tooltipBoxVisible
+    position: absolute
+    background: #E0E0E0
+    +dm-sans
+    color: #000000
+    padding: 5px 10px
+    text-align: left
+    border-radius: 8px
+    bottom: calc(100% + 10px)
+    display: block
+    width: 230px
+    right: -25px
+    box-shadow: 0px 4px 8px -2px rgba(17, 24, 39, 0.1), 0px 2px 4px -2px rgba(17, 24, 39, 0.06)
+
+.tooltipBoxVisible:after
+    content: ""
+    display: block
+    width: 0
+    height: 0
+    border-left: 10px solid transparent
+    border-right: 10px solid transparent
+    border-top: 7px solid #e0e0e0
+    position: absolute
+    top: 100%
+    right: 29px
+
+.tooltipWhiteSpace
+    display: none
+
+.tooltipWhiteSpaceVisible
+    height: 10px
+    width: 30px
+    height: 15px
+    position: absolute
+    top: -5px
+    display: block

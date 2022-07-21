@@ -2,10 +2,8 @@
 
 .card
   background-color: $n8
-  width: 544px
-  min-height: 540px
   border-radius: 16px
-  padding: 24px 48px 48px 48px
+  padding: 24px 0 48px 0
   display: flex
   flex-direction: column
 
@@ -30,17 +28,71 @@
   display: flex
   flex-direction: column
 
+.VerifyDetails
+  background: $n50
+  border-radius: 20px
+  padding: 1em
+  margin-bottom: 1em
+
+.changeDetails
+  color: $n500
+  width: 100%
+  text-align: right
+
+.confirmation
+  display: flex
+  align-items: center
+
 .VerifyDetails__inputs
   margin-bottom: auto
   margin-top: 14px
   flex-grow: 1
 
 .continueButton
-  margin-top: auto
   width: 100%
+  margin-top: auto
+
+.viewDocumentButton
+  margin-top: auto
+  margin-bottom: 1em
+
+.adoptSignatureTitle
+  font-size: 36px
+
+.adoptSignatureText
+  font-size: 16px
+
+.nameConfirm
+  margin-top: 1em
+  font-size: 24px
+
+.fullWidthButton
+  width: 100%
+  margin-top: 40px
+
+.signatureSelect
+  border-radius: 24px
+  box-shadow: 0px 20px 24px -4px rgba(17, 24, 39, 0.1), 0px 8px 8px -4px rgba(17, 24, 39, 0.04)
+  display: flex
+  justify-content: space-between
+  margin: 1em 0
+  &:hover
+    outline: 2px solid black
+
+.signatureCheckbox
+  display: flex
+  align-items: center
+  justify-content: center
+
+.signatureList
+  padding: 0
 
 .pageIcon
   text-align: center
+  display: flex
+  flex: 1
+  align-items: center
+  justify-content: center
 
 .ConfirmPage__countdown
   display: flex

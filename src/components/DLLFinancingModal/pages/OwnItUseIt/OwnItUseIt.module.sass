@@ -22,34 +22,58 @@
 .financingTypeContainer
   width: 48%
   
+.financingTypeContainer_tab_wrapper
+  display: flex
+  justify-content: center
+  height: 27px
+
+.financingTypeContainer_tab_wrapper div
+  width: 65%
+  background-color: black
+  color: white
+  text-align: center
+  border-top-left-radius: 8px
+  border-top-right-radius: 8px
 
 .financingTypeContainer_button
   width: 100%
-  height: 400px
-  padding: 12px
-  border: 2px solid #E6E8EC
+  height: 420px
+  padding: 12px 12px 34px 12px
   border-radius: 8px
   margin-bottom: 40px
   text-align: center
   display: flex
   flex-direction: column
   justify-content: flex-start
-  background-color: $n7
+  background-color: $p100
+
+.titleWrapper
+  padding-bottom: 16px
+
+.secondary
+  background-color: $acc1
+
+.priceContainer
+  padding-bottom: 11px
 
 
-.financingTypeContainer_button:hover
-  background-color: $n6
+// .financingTypeContainer_button:hover
+//   background-color: $n6
 
 .financingTypeContainer_title
-  margin: 0 auto
   +poppins
   +headline-4
   font-size: 24px
+
+.financingTypeContainer_title_img
+  padding-right: 8px
+
  
 .financingTypeContainer_subtitle
   +poppins
   +caption-1
   margin-bottom: 24px
+  text-align: left
 
 .financingTypeContainer_price
   margin: 0 auto
@@ -63,16 +87,18 @@
   line-height: 14px
   height: 30px
   margin-bottom: 24px
+  padding-top: 7px
+  text-align: left
 
 .financingTypeContainerProperties
   text-align: left
+  flex-grow: 1
 
 .property
   margin-bottom: 6px
   display: flex
 
 .propertyIcon
-  margin-bottom: 18px
   color:$n3
   margin-right: 6px
 
@@ -80,3 +106,4 @@
   +poppins
   +caption-2
   color: $n3
+  margin: auto 0

@@ -1,14 +1,14 @@
 const copy = {
   banner: {
-    title: 'Apple Computers',
-    subtitle: 'MacBook Pro',
-    price: '$1,999',
+    title: 'Imaging Systems',
+    subtitle: 'iTero Element 5D',
+    price: '$24,999',
   },
-  assetDescriptor: "device",
+  assetDescriptor: "product",
   productGridName: 'Products',
   extras: {
     option1: {
-      text: 'Add Apple Care',
+      text: 'Add property casualty insurance',
       price: '$80/month',
     },
     option2: {
@@ -26,7 +26,7 @@ const copy = {
       delivery: 'Estimated delivery time: 5-7 days'
     },
     option2: {
-      type: 'Deliver with DHL ($50)',
+      type: 'Deliver with DHL ($500)',
       delivery: 'Estimated delivery time: 1-2 days'
     },
   }

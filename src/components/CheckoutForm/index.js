@@ -9,17 +9,20 @@ const CheckoutForm = () => {
     <>
       <p className={styles.formTitle}>Billing Address</p>
       <form className={styles.checkoutForm}>
-        <TextInput className={cn(styles.formRow, styles.checkoutForm__email)} label="email" type="text"  />
+        <TextInput className={cn(styles.formRow, styles.checkoutForm__email)} label="Email" type="text"  />
+        <TextInput className={cn(styles.formRow, styles.checkoutForm__email)} label="Company name" type="text"  />
+        <TextInput className={cn(styles.formRow, styles.checkoutForm__email)} label="VAT number" type="text"  />
+        <TextInput className={cn(styles.checkoutForm__half, styles.checkoutFormLeft)} label="First name" type="text"  />
         <div className={cn(styles.formRow, styles.checkoutFormGroup)}>
-          <TextInput className={cn(styles.checkoutForm__half, styles.checkoutFormLeft)} label="First Name" type="text"  />
-          <TextInput className={cn(styles.checkoutForm__half, styles.checkoutFormRight)} label="Last Name" type="text"  />
+        <TextInput className={cn(styles.checkoutForm__half, styles.checkoutFormLeft)} label="Middle name" type="text"  />
+        <TextInput className={cn(styles.checkoutForm__half, styles.checkoutFormRight)} label="Last name" type="text"  />
         </div>
-        <TextInput className={cn(styles.formRow,styles.checkoutForm__streetAddress)} label="Street Address" type="text"  />
+        <TextInput className={cn(styles.formRow,styles.checkoutForm__streetAddress)} label="Street address" type="text"  />
         <div className={cn(styles.formRow, styles.checkoutFormGroup)}>
           <TextInput className={cn(styles.checkoutForm__half, styles.checkoutFormLeft)} label="State" type="text"  />
           <TextInput className={cn(styles.checkoutForm__half, styles.checkoutFormRight)}label="Zip" type="text"  />
         </div>
-        <TextInput className={cn(styles.formRow, styles.checkoutForm__apartment)} label="Apartment, Suite (optional)" type="text"  />
+        <TextInput className={cn(styles.formRow, styles.checkoutForm__apartment)} label="Apartment, suite (Optional)" type="text"  />
         <TextInput className={cn(styles.formRow, styles.checkoutForm__city)} label="City" type="text"  />
         <TextInput className={cn(styles.formRow, styles.checkoutForm__phone)} label="Phone" type="text"  />
       </form>

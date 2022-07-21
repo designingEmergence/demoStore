@@ -3,6 +3,7 @@ import styles from "./FinancingOverview.module.sass";
 import NumberFormat from "react-number-format";
 import cn from "classnames";
 import { store } from "../../store";
+import { Radio } from "@mui/material";
 
 
 const mockExtrasStore = [
@@ -69,7 +70,7 @@ function Financeitems({values}) {
   return items
 }
 
-const FinancingOverview = () => {
+const FinancingOverview = ({paymentMethod, paymentMethodChange}) => {
   const { state } = useContext(store);
   const financeListItems = mapStateToFinanceItems(state.financingConfig, state.interestRate);
 
@@ -78,21 +79,36 @@ const FinancingOverview = () => {
   return (
     <>
       <div className={styles.financingOverviewContainer}>
-        <p className={styles.financingOverviewTitle}>Financing</p>
+        {/* <p className={styles.financingOverviewTitle}>Financing</p> */}
         <div className={styles.financingOverviewCard}>
           <div className={styles.financingOverviewCard_header}>
-            <p className={styles.financingOverviewCard_title}> Finance Powered by DLL</p>
-            <img className={styles.financingOverviewCard_icon} src="/images/icons/dll.svg" alt=""/>
+            <p className={styles.financingOverviewCard_title}>
+              <Radio 
+                checked={paymentMethod==="financing"} 
+                onChange={paymentMethodChange} 
+                value="financing"
+                name="radio-buttons" 
+                sx={{
+                  color: '#000000',
+                  '&.Mui-checked': {
+                      color: '#000000',
+                  },
+                }} /> 
+              Finance Powered by DLL</p>
+            <img className={styles.financingOverviewCard_icon} src="/images/icons/dll-chip-blue.svg" alt=""/>
           </div>
-          <hr className={styles.financingOverviewCard_divider}/>
-          <div className={styles.financingOverviewCard_items}>
-            <Financeitems values={financeListItems} />
-          </div>
-          <p className={styles.financingOverviewCard_title}>Extras</p>
-          <hr className={styles.financingOverviewCard_divider}/>
-          <div className={styles.financingOverviewCard_items}>
-            <Financeitems values={mockExtrasStore} />
-          </div>
+          {paymentMethod === 'financing' ? 
+            <>
+            <hr className={styles.financingOverviewCard_divider}/>
+            <div className={styles.financingOverviewCard_items}>
+              <Financeitems values={financeListItems} />
+            </div>
+            <p className={styles.financingOverviewCard_title}>Extras</p>
+            <hr className={styles.financingOverviewCard_divider}/>
+            <div className={styles.financingOverviewCard_items}>
+              <Financeitems values={mockExtrasStore} />
+            </div>
+          </>: ''}
         </div>
       </div>
     </>

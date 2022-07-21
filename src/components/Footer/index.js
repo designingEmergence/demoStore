@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import styles from "./Footer.module.sass";
-import { Link } from "react-router-dom";
+import Link from "../Link";
+
 const Footer = () => {
   return (
     <>
@@ -10,23 +11,32 @@ const Footer = () => {
           <div className={styles.footerLinks}>
             <div className={styles.column1}>
               <p className={styles.columnTitle}>DLL</p>
-              <Link to="/"><p className={styles.columnLink}>Case Studies</p></Link>
-              <Link to="/"><p className={styles.columnLink}>FAQs</p></Link>
+              <Link variant='clear' to="/"><p className={styles.columnLink}>Case Studies</p></Link>
+              <Link variant='clear' to="/"><p className={styles.columnLink}>FAQs</p></Link>
             </div>
             <div className={styles.column2}>
               <p className={styles.columnTitle}>Shoppers</p>
-              <Link to="/"><p className={styles.columnLink}>DLL Stores</p></Link>
-              <Link to="/"><p className={styles.columnLink}>Shopping App</p></Link>
+              <Link variant='clear' to="/"><p className={styles.columnLink}>DLL Stores</p></Link>
+              <Link variant='clear' to="/"><p className={styles.columnLink}>Shopping App</p></Link>
             </div>
             <div className={styles.column3}>
             <p className={styles.columnTitle}>Business</p>
-              <Link to="/"><p className={styles.columnLink}>Become a Partner</p></Link>
-              <Link to="/"><p className={styles.columnLink}>Developers</p></Link>
+              <Link variant='clear' to="/"><p className={styles.columnLink}>Become a Partner</p></Link>
+              <Link variant='clear' to="/"><p className={styles.columnLink}>Developers</p></Link>
             </div>
             <div className={styles.column4}>
-            <p className={styles.columnTitle}>Join our Community</p>
+            {/* <p className={styles.columnTitle}>Join our Community</p> */}
               
             </div>
+          </div>
+        </div>
+        <div className={styles.footer}>
+          <div className={styles.legal}><p>© 2022 DLL. All rights reserved</p></div>
+          <div className={styles.legalLinks}>
+            <Link variant='clear' to="">Terms & Conditions</Link>
+            <Link variant='clear' to="">Contact</Link>
+            <Link variant='clear' to="">Sitemap</Link>
+            <Link variant='clear' to="">Disclaimer</Link>
           </div>
         </div>
       </div>

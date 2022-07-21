@@ -4,9 +4,8 @@
   display: flex
   align-items: center
   margin-bottom: 8px
-  background-color: $n7
-  border-radius: 24px
-  padding: 20px 0px
+  border: 1px solid $n200
+  padding: 8px 16px 8px 8px
 
 
 .dllIcon
@@ -16,20 +15,22 @@
 
 .dllPaymentTextColumn
   text-align: left
+  flex: 1
 
 .dllPaymentText
-  +poppins
-  font-size: 12px
+  +body-sm
+  +regular
   line-height: 20px
-  font-weight: 400
   text-align: left
+  span
+    +semibold
 
 .amount
-  +poppins
-  +body-bold-2
+  +outfit
+  +semibold
   font-weight: 600
   margin-right: 4px
-  color: $p1
+  color: #000000
 
 .learnMore
   text-decoration: underline

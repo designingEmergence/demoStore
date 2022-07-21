@@ -147,7 +147,7 @@ const PaymentTerms =({linkToCheckout = true, setPage, nextPage}) => {
       {linkToCheckout ?  <Link to={{
         pathname: '/checkout',
         search: `?financing=${true}`
-      }} ><button onClick={()=>{setPaymentTerms()}} className={cn("button", styles.continueButton)}>Continue</button></Link>
+      }} className={styles.no_underline} ><button onClick={()=>{setPaymentTerms()}} className={cn("button", styles.continueButton)}>Continue</button></Link>
 
       : <button onClick={()=>{setPaymentTerms()}} className={cn("button", styles.continueButton)}>Continue</button>}
     </div>

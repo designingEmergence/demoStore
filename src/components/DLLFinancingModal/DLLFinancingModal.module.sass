@@ -11,7 +11,7 @@
   background-color: $n8
   box-shadow: 0px 64px 64px -48px rgba(15, 15, 15, 0.08)
   border-radius: 16px
-  padding: 24px 48px 48px 48px
+  padding: 24px 48px 18px 48px
 
 .modal_header
   display: flex
@@ -22,6 +22,10 @@
 .arrowLeft
   position: relative
   left: -200px
+
+.close
+  position: relative
+  right: -200px
 
 .page_title
   +dm-sans
@@ -53,3 +57,23 @@
   +poppins
   +caption-bold-1
   
+.modalSteps
+  display: flex
+  align-items: center
+  justify-content: space-between
+  margin: 2em auto 0 auto
+  max-width: 45px
+
+.modalStep
+  width: 8px
+  height: 8px
+  border-radius: 10em
+  background: $n300
+
+.modalStepActive
+  background: black
+
+.use_it
+  background: $acc1
+  padding: 0px 8px
+  border-radius: 8px
