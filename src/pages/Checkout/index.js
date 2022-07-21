@@ -28,11 +28,11 @@ const Checkout = () => {
     setPaymentMethod(e.target.value);
   };
 
-  function redirectWithDelay(path, delay) {
+  function redirectWithDelay(path, delay, external=false) {
     setRedirect(true);
     setTimeout(() => {
-      navigate(path);
-    } , delay);
+      external ? window.open(path, '_self'):navigate(path);
+     } , delay);
   }
 
   const label = { inputProps: { 'aria-label': 'I agree to the DLL Finance Service and Privacy Policy.' } };
@@ -64,7 +64,7 @@ const Checkout = () => {
               </div>
               {(paymentMethod !== 'card') ? 
               <button onClick={()=> {
-                setShowCheckoutValidation(true);
+                redirectWithDelay('https://www.figma.com/proto/459fYXEnnuAPVBaKbyHWN2/DLL%2B-UI-Kit---v1.0?page-id=8108%3A59506&node-id=8108%3A60850&viewport=3891%2C4853%2C0.53&scaling=min-zoom&starting-point-node-id=8108%3A60850',200, true);
               }} className={cn("button", styles.placeOrderButton)}>
                 {(!redirect ? 'Get Financing': 'Redirecting...')}
               </button> :  
