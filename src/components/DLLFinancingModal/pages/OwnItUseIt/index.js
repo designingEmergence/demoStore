@@ -15,31 +15,47 @@ import { Stack } from "@mui/material";
 const ownItProperties = [
   {
     icon: <CheckIcon fontSize="16px" />,
-    text: "Own the product from day 1"
+    text: "Own the equipment from day 1"
   },
   {
     icon: <CheckIcon fontSize="16px" />,
-    text: "Finance the full amount or just part of it"
+    text: "Add maintenance and insurance to your finance contract"
   },
   {
     icon: <CheckIcon fontSize="16px" />,
-    text: "Your investment is tax deductible"
+    text: "Potential to write off depreciation and interest expense"
   },
+  // {
+  //   icon: <CheckIcon fontSize="16px" />,
+  //   text: "Avoid a large upfront cash outlay"
+  // },
+  // {
+  //   icon: <CheckIcon fontSize="16px" />,
+  //   text: "Aids in predicting cash flow"
+  // },
 ]
 
 const useItProperties = [
   {
     icon: <CheckIcon fontSize="16px" />,
-    text: "Pay monthly to use the product"
+    text: "Fixed monthly fee, including maintenance & insurance"
   },
   {
     icon: <CheckIcon fontSize="16px" />,
-    text: "Upgrade to the latest product after 2 years"
+    text: "At end of the term extend the contract, buy the equipment or return it"
   },
-  {
-    icon: <CheckIcon fontSize="16px" />,
-    text: "Maintenance included"
-  },
+  // {
+  //   icon: <CheckIcon fontSize="16px" />,
+  //   text: "The equipment will be given a second life upon return"
+  // },
+  // {
+  //   icon: <CheckIcon fontSize="16px" />,
+  //   text: "Lease payments are tax deductible"
+  // },
+  // {
+  //   icon: <CheckIcon fontSize="16px" />,
+  //   text: "Option to upgrade to new technology at the end of the term"
+  // },
 ]
 
 const OwnItUseIt = ({ selectionFunction }) => {
@@ -91,7 +107,7 @@ const OwnItUseIt = ({ selectionFunction }) => {
           <div className={styles.financingTypeContainerProperties}>
             <Properties properties={props.properties} />
           </div>
-          <button className={cn("button")} onClick={() => selectFinancingType(props.variableValue)}>
+          <button className={cn("button", "getStarted")} onClick={() => selectFinancingType(props.variableValue)}>
             Get started
           </button>
         </div>
@@ -108,7 +124,7 @@ const OwnItUseIt = ({ selectionFunction }) => {
         <FinancingTypeContainer
           title="Own It"
           subtitle="I want to buy the product and own it from day 1"
-          price={cartTotal / 50}
+          price={cartTotal / 60}
           priceSubtitle="Per month, based on 48 months"
           properties={ownItProperties}
           variableValue="Own"
@@ -116,8 +132,8 @@ const OwnItUseIt = ({ selectionFunction }) => {
         <FinancingTypeContainer
           title="Use It"
           subtitle="I want to use the product for a selected period of time"
-          price={cartTotal / 60}
-          priceSubtitle="Per month, based on 48 months, incl. service contract"
+          price={cartTotal / 50}
+          priceSubtitle="Per month, based on 48 months, incl. service"
           properties={useItProperties}
           variableValue="Use"
           secondary />
