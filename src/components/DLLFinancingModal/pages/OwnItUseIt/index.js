@@ -15,24 +15,24 @@ import { Stack } from "@mui/material";
 const ownItProperties = [
   {
     icon: <CheckIcon fontSize="16px" />,
-    text: "Own the equipment from day 1"
+    text: "Own the equipment from day 1, and pay in installations"
   },
   {
     icon: <CheckIcon fontSize="16px" />,
-    text: "Add maintenance and insurance to your finance contract"
+    text: "Flexibility to add maintenance and insurance to your finance contract"
   },
   {
     icon: <CheckIcon fontSize="16px" />,
-    text: "Potential to write off depreciation and interest expense"
+    text: "Write off depreciation & interest expense"
   },
-  // {
-  //   icon: <CheckIcon fontSize="16px" />,
-  //   text: "Avoid a large upfront cash outlay"
-  // },
-  // {
-  //   icon: <CheckIcon fontSize="16px" />,
-  //   text: "Aids in predicting cash flow"
-  // },
+  {
+    icon: <CheckIcon fontSize="16px" />,
+    text: "Avoid a large upfront cash outlay"
+  },
+  {
+    icon: <CheckIcon fontSize="16px" />,
+    text: "Aids in predicting cash flow"
+  },
 ]
 
 const useItProperties = [
@@ -42,20 +42,20 @@ const useItProperties = [
   },
   {
     icon: <CheckIcon fontSize="16px" />,
-    text: "At end of the term extend the contract, buy the equipment or return it"
+    text: "At end of the term, extend the contract, buy the equipment or return it"
   },
-  // {
-  //   icon: <CheckIcon fontSize="16px" />,
-  //   text: "The equipment will be given a second life upon return"
-  // },
-  // {
-  //   icon: <CheckIcon fontSize="16px" />,
-  //   text: "Lease payments are tax deductible"
-  // },
-  // {
-  //   icon: <CheckIcon fontSize="16px" />,
-  //   text: "Option to upgrade to new technology at the end of the term"
-  // },
+  {
+    icon: <CheckIcon fontSize="16px" />,
+    text: "Equipment will be given a 2nd life upon return"
+  },
+  {
+    icon: <CheckIcon fontSize="16px" />,
+    text: "Lease payments are tax deductible"
+  },
+  {
+    icon: <CheckIcon fontSize="16px" />,
+    text: "Upgrade to new tech at end of the term"
+  },
 ]
 
 const OwnItUseIt = ({ selectionFunction }) => {
