@@ -14,7 +14,7 @@ function UseItPage() {
   return (
     <div className={styles.page}>
       <p className={styles.page_title}><span className={styles.use_it}>Use it</span> through financing</p>
-      <p className={styles.page_subtitle}>Configure the options to generate the quote for using the products</p>
+      <p className={styles.page_subtitle}>Please select your preferred contract duration and payment frequency</p>
       <PaymentTerms />
     </div>
   );
@@ -24,7 +24,7 @@ function OwnItPage() {
   return (
     <div className={styles.page}>
       <p className={styles.page_title}><span className={styles.own_it}>Own it</span> through financing</p>
-      <p className={styles.page_subtitle}>Configure the options to generate the quote for owning the products</p>
+      <p className={styles.page_subtitle}>Please select your preferred contract duration and payment frequency</p>
       <PaymentTerms />
     </div>
   );
