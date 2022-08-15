@@ -1,9 +1,9 @@
 const productCatalog = [
   {
     "id": "1",
-    "name": "iTero Element Plus Series",
-    "description": "With the iTero Element Plus Series you have cutting-edge digital scanning performance that delivers a seamless experience. iTero Element Plus imaging systems are built upon the success of the iTero Element portfolio, which features innovative technology like Near-Infrared Technology (NIRI) to aid in caries detection above the gingiva1. Take your practice to the next level with enhanced productivity and patient experiences.",
-    "price": 19999,
+    "name": "Bizhub 4000i",
+    "description": "User friendly, trustworthy and high-quality performance. It’s compact, easy to use and to maintain. It’s compatible with paper sizes from A6 to A4.",
+    "price": 700,
     "image": "images/products/1/1.jpg",
     "images": ["images/products/1/1.jpg", "images/products/1/2.jpg"],
     "available": true,
@@ -13,9 +13,9 @@ const productCatalog = [
   },
   {
     "id": "2",
-    "name": "iTero Element 5D",
-    "description": "The iTero Element 5D is a revolutionary imaging system that delivers a seamless experience. iTero Element 5D imaging systems are built upon the success of the iTero Element portfolio, which features innovative technology like Near-Infrared Technology (NIRI) to aid in caries detection above the gingiva. Take your practice to the next level with enhanced productivity and patient experiences.",
-    "price": 24999,
+    "name": "Bizhub C750i",
+    "description": "Simple, connected and safe. Discover the biz hub series! This printer offers automatic media type detection for improved user experience and highest data security. It’s compatible with A6 paper formats, customer formats and banner printing up to 1.2m.",
+    "price": 3050,
     "image": "images/products/2/1.jpg",
     "images": ["images/products/2/1.jpg", "images/products/2/2.jpg"],
     "available": true,
@@ -25,9 +25,9 @@ const productCatalog = [
   },
   {
     "id": "3",
-    "name": "iTero Element 2",
-    "description": "With the iTero Element 2 scanner in your practice, you've got a powerful system built to streamline your workflow, enhance your precision, and better connect with your patients. Features like its expanded 21.5” touch widescreen and high-definition color imaging make for more compelling chairside consultations. The iTero Element 2 scanner’s faster scan processing* and lab compatibility make it easier to grow your practice by accepting more case volume.",
-    "price": 39900,
+    "name": "Bizhub C3000i",
+    "description": "Simple, connected and safe. Discover the biz hub series! This printer reduces environmental impact thanks to state-of-the-art technology with competitively low power consumption, saving both energy and money. It’s compatible with A6 paper formats, customer formats and banner printing up to 1.2m.",
+    "price": 6050,
     "image": "images/products/3/1.jpg",
     "images": ["images/products/3/1.jpg", "images/products/3/2.jpg"],
     "available": true,

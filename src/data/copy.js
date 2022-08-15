@@ -1,8 +1,8 @@
 const copy = {
   banner: {
-    title: 'Imaging Systems',
-    subtitle: 'iTero Element 5D',
-    price: '$24,999',
+    title: 'Printing Systems',
+    subtitle: '',
+    price: '',
   },
   assetDescriptor: "product",
   productGridName: 'Products',
@@ -16,7 +16,7 @@ const copy = {
       price: '$40/month',
     },
     option3: {
-      text: 'Add IoT Subscription',
+      text: 'Add ink Subscription',
       price: '$25/month',
     }
   },
