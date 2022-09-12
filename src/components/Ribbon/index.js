@@ -8,7 +8,7 @@ const Ribbon = ({}) => {
   return (
     <>
       <div className={styles.ribbon}>
-        <h5 className={styles.ribbonText}>Shop Now. Pay with DLL Finance. <Link to="">Learn More</Link></h5>
+        <h5 className={styles.ribbonText}>Shop Now. Pay with Konica Minolta Premier Financing. <Link to="">Learn More</Link></h5>
       </div>
     </>
   );

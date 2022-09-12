@@ -60,7 +60,7 @@ const Checkout = () => {
                     color: '#000000',
                   },
                 }}/>
-                <p>I agree to the <a href="">DLL Finance Service</a> and <a href="">Privacy Policy</a>.</p>
+                <p>I agree to the <a href="">Konica Minolta Premier Financing Service</a> and <a href="">Privacy Policy</a>.</p>
               </div>
               {(paymentMethod !== 'card') ? 
               <button onClick={()=> {

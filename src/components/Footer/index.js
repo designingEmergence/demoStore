@@ -10,13 +10,13 @@ const Footer = () => {
           <p className={styles.logoWhite}>Demostore</p>
           <div className={styles.footerLinks}>
             <div className={styles.column1}>
-              <p className={styles.columnTitle}>DLL</p>
+              <p className={styles.columnTitle}>Konica Minolta</p>
               <Link variant='clear' to="/"><p className={styles.columnLink}>Case Studies</p></Link>
               <Link variant='clear' to="/"><p className={styles.columnLink}>FAQs</p></Link>
             </div>
             <div className={styles.column2}>
               <p className={styles.columnTitle}>Shoppers</p>
-              <Link variant='clear' to="/"><p className={styles.columnLink}>DLL Stores</p></Link>
+              <Link variant='clear' to="/"><p className={styles.columnLink}>Vendors</p></Link>
               <Link variant='clear' to="/"><p className={styles.columnLink}>Shopping App</p></Link>
             </div>
             <div className={styles.column3}>
