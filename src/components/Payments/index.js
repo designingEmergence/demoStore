@@ -34,7 +34,7 @@ const Payments = ({paymentMethod, paymentMethodChange}) => {
                   }} />
                 <p className={styles.paymentMethodTitle}>Card</p>
               </div>
-              <img className={styles.paymentIcons} src="/images/paymentIcons-wo-dll.png" alt=""/>
+              {/* <img className={styles.paymentIcons} src="/images/paymentIcons-wo-dll.png" alt=""/> */}
             </div>
             {(paymentMethod === 'card') && <div className={styles.paymentMethodSelected}>
               <div>

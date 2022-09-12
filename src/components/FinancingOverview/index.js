@@ -94,7 +94,7 @@ const FinancingOverview = ({paymentMethod, paymentMethodChange}) => {
                       color: '#000000',
                   },
                 }} /> 
-              Finance Powered by DLL</p>
+              Finance Powered by Konica Minolta Premier Financing</p>
             <img className={styles.financingOverviewCard_icon} src="/images/icons/dll-chip-blue.svg" alt=""/>
           </div>
           {paymentMethod === 'financing' ? 
